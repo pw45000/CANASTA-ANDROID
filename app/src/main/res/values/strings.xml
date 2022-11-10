@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Canasta</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="new_game_label">New Game</string>
+    <string name="load_game_label">Load Game</string>
+
+    <string name="coin_toss_prompt">Player 2! Heads or Tails?</string>
+    <string name="heads">Heads</string>
+    <string name="tails">Tails</string>
+    <string name="coin_toss_result">The result of the coin toss was:</string>
+
+    <string name="coin_toss_success">You guessed correctly! Player 2 goes first!</string>
+    <string name="coin_toss_failure">You guessed incorrectly... Player 1 goes first!</string>
+    <string name="start_game">Start</string>
+
+
+    <string name="opponent_turn"> It\'s currently the opponent\'s turn. Tap to continue!</string>
+    <string name="your_turn"> It\'s currently your turn turn. Tap to continue!</string>
+
+    <string name="meld_label">Meld cards</string>
+    <string name="add_meld_label">Add to pre-existing meld</string>
+    <string name="transfer_meld_label">Transfer wildcard from meld</string>
+    <string name="end_meld_phase"> End meld phase </string>
+
+    <string name="advice"> Advice </string>
+    <string name ="Round"> Round: </string>
+    <string name="stock_pile"> Stock </string>
+    <string name="discard_pile"> Discard </string>
+    <string name="player_hand"> Your hand </string>
+    <string name="player_melds"> Your melds </string>
+    <string name="enemy_melds"> Enemy melds </string>
+
+
+
+
+
+
+
+
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
