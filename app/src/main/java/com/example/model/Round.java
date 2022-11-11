@@ -629,11 +629,11 @@ public class Round implements Closeable
 						 lines_to_parse: a vector of strings representing all the extracted strings from the file.
 	Assistance Received: none
 	********************************************************************* */
-	public final boolean load_game(String file) throws IOException
+	public final boolean load_game(String input_file_name) throws IOException
 	{
 		System.out.print("Please enter the file you wish to load. Say 0 to quit.");
 		System.out.print("\n");
-		String input_file_name;
+		//String input_file_name;
 		input_file_name = new Scanner(System.in).nextLine();
 
 		if (input_file_name.equals("0"))
@@ -681,15 +681,15 @@ public class Round implements Closeable
 		}
 		else
 		{
-			System.out.print("File specified does not exists!");
-			System.out.print("\n");
+			//System.out.print("File specified does not exists!");
+			//System.out.print("\n");
 			return false;
 		}
 
 		if (lines_to_parse.size() != 12)
 		{
-			System.out.print("The load file has either too little or too much information!");
-			System.out.print("\n");
+			//System.out.print("The load file has either too little or too much information!");
+			//System.out.print("\n");
 			return false;
 		}
 

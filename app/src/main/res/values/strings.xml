@@ -21,7 +21,7 @@
 
 
     <string name="opponent_turn"> It\'s currently the opponent\'s turn. Tap to continue!</string>
-    <string name="your_turn"> It\'s currently your turn turn. Tap to continue!</string>
+    <string name="your_turn"> It\'s currently your turn. Tap to continue!</string>
 
     <string name="meld_label">Meld cards</string>
     <string name="add_meld_label">Add to pre-existing meld</string>
@@ -46,6 +46,8 @@
     <string name ="create_meld"> Create Meld</string>
     <string name= "add_meld"> Add to Meld</string>
     <string name = "transfer_wild_cards">Transfer Cards</string>
+
+    <string name= "input_file_prompt"> Input a file: </string>
 
 
 
