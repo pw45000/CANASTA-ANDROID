@@ -123,7 +123,8 @@ public class Game implements Closeable
 			case 2:
 			{
 				Round loading_round = new Round();
-				boolean load_success = loading_round.load_game();
+				boolean load_success = true;
+						//loading_round.load_game();
 				if (load_success)
 				{
 					players = new ArrayList<Player>(loading_round.get_players());

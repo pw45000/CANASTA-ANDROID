@@ -629,7 +629,7 @@ public class Round implements Closeable
 						 lines_to_parse: a vector of strings representing all the extracted strings from the file.
 	Assistance Received: none
 	********************************************************************* */
-	public final boolean load_game() throws IOException
+	public final boolean load_game(String file) throws IOException
 	{
 		System.out.print("Please enter the file you wish to load. Say 0 to quit.");
 		System.out.print("\n");

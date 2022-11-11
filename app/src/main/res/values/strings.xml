@@ -26,16 +26,26 @@
     <string name="meld_label">Meld cards</string>
     <string name="add_meld_label">Add to pre-existing meld</string>
     <string name="transfer_meld_label">Transfer wildcard from meld</string>
-    <string name="end_meld_phase"> End meld phase </string>
+    <string name="end_meld_phase"> End Phase </string>
+    <string name= "cancel_operation"> Cancel Operation</string>
 
     <string name="advice"> Advice </string>
     <string name ="Round"> Round: </string>
-    <string name="stock_pile"> Stock </string>
-    <string name="discard_pile"> Discard </string>
+    <string name="stock_pile"> Stock pile </string>
+    <string name="discard_pile"> Discard pile</string>
     <string name="player_hand"> Your hand </string>
     <string name="player_melds"> Your melds </string>
-    <string name="enemy_melds"> Enemy melds </string>
+    <string name="enemy_melds"> Enemy\'s melds </string>
+    <string name="enemy_hand"> Enemy\'s hand </string>
+    <string name="log"> Log </string>
+    <string name="save_game"> Save </string>
+    <string name="continue_turn"> Continue </string>
+    <string name="score"> Score: </string>
+    <string name="quit"> Quit </string>
 
+    <string name ="create_meld"> Create Meld</string>
+    <string name= "add_meld"> Add to Meld</string>
+    <string name = "transfer_wild_cards">Transfer Cards</string>
 
 
 
