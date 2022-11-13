@@ -6,481 +6,486 @@
     android:layout_height="match_parent"
     android:background="@drawable/mat">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/mat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/add_to_meld_button"
-            android:layout_width="89dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="114dp"
-            android:layout_marginTop="565dp"
-            android:layout_marginEnd="224dp"
-            android:layout_marginBottom="125dp"
-            android:text="@string/add_meld"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/mat">
 
-        <Button
-            android:id="@+id/transfer_cards_button"
-            android:layout_width="91dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="220dp"
-            android:layout_marginTop="565dp"
-            android:layout_marginEnd="123dp"
-            android:layout_marginBottom="118dp"
-            android:text="@string/transfer_wild_cards"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.652"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            <Button
+                android:id="@+id/add_to_meld_button"
+                android:layout_width="89dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="114dp"
+                android:layout_marginTop="565dp"
+                android:layout_marginEnd="224dp"
+                android:layout_marginBottom="125dp"
+                android:text="@string/add_meld"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/create_meld_button"
-            android:layout_width="89dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="565dp"
-            android:layout_marginEnd="324dp"
-            android:layout_marginBottom="125dp"
-            android:text="@string/create_meld"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/transfer_cards_button"
+                android:layout_width="91dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="565dp"
+                android:layout_marginEnd="123dp"
+                android:layout_marginBottom="118dp"
+                android:text="@string/transfer_wild_cards"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.652"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/round_number_text"
-            android:layout_width="118dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="198dp"
-            android:layout_marginTop="305dp"
-            android:layout_marginEnd="111dp"
-            android:layout_marginBottom="404dp"
-            android:text="0"
-            android:textAlignment="textEnd"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/create_meld_button"
+                android:layout_width="89dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="565dp"
+                android:layout_marginEnd="324dp"
+                android:layout_marginBottom="125dp"
+                android:text="@string/create_meld"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/player_turn_text"
-            android:layout_width="103dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="91dp"
-            android:layout_marginTop="335dp"
-            android:layout_marginEnd="233dp"
-            android:layout_marginBottom="373dp"
-            android:text="Computer's"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/round_number_text"
+                android:layout_width="118dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="198dp"
+                android:layout_marginTop="305dp"
+                android:layout_marginEnd="111dp"
+                android:layout_marginBottom="404dp"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/score_text_computer_num"
-            android:layout_width="111dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="283dp"
-            android:layout_marginTop="126dp"
-            android:layout_marginEnd="33dp"
-            android:layout_marginBottom="582dp"
-            android:text="0"
-            android:textAlignment="textEnd"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/player_turn_text"
+                android:layout_width="103dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="91dp"
+                android:layout_marginTop="335dp"
+                android:layout_marginEnd="233dp"
+                android:layout_marginBottom="373dp"
+                android:text="Computer's"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/score_text_computer"
-            android:layout_width="88dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="194dp"
-            android:layout_marginTop="126dp"
-            android:layout_marginEnd="145dp"
-            android:layout_marginBottom="583dp"
-            android:text="@string/score"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/score_text_computer_num"
+                android:layout_width="111dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="283dp"
+                android:layout_marginTop="126dp"
+                android:layout_marginEnd="33dp"
+                android:layout_marginBottom="582dp"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/score_text_human"
-            android:layout_width="88dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="201dp"
-            android:layout_marginTop="466dp"
-            android:layout_marginEnd="138dp"
-            android:layout_marginBottom="243dp"
-            android:text="@string/score"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.875" />
+            <TextView
+                android:id="@+id/score_text_computer"
+                android:layout_width="88dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="194dp"
+                android:layout_marginTop="126dp"
+                android:layout_marginEnd="145dp"
+                android:layout_marginBottom="583dp"
+                android:text="@string/score"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/stock_pile_text"
-            android:layout_width="95dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="316dp"
-            android:layout_marginTop="240dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="466dp"
-            android:text="@string/stock_pile"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            <TextView
+                android:id="@+id/score_text_human"
+                android:layout_width="88dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="201dp"
+                android:layout_marginTop="466dp"
+                android:layout_marginEnd="138dp"
+                android:layout_marginBottom="243dp"
+                android:text="@string/score"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.875" />
 
-        <TextView
-            android:id="@+id/your_melds_text"
-            android:layout_width="181dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="643dp"
-            android:layout_marginEnd="246dp"
-            android:layout_marginBottom="66dp"
-            android:text="@string/player_hand"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/stock_pile_text"
+                android:layout_width="95dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="316dp"
+                android:layout_marginTop="240dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="466dp"
+                android:text="@string/stock_pile"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/player_melds_text"
-            android:layout_width="181dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="466dp"
-            android:layout_marginEnd="226dp"
-            android:layout_marginBottom="243dp"
-            android:text="@string/player_melds"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/your_melds_text"
+                android:layout_width="181dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="643dp"
+                android:layout_marginEnd="246dp"
+                android:layout_marginBottom="66dp"
+                android:text="@string/player_hand"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/continue_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/continue_turn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.603" />
+            <TextView
+                android:id="@+id/player_melds_text"
+                android:layout_width="181dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="466dp"
+                android:layout_marginEnd="226dp"
+                android:layout_marginBottom="243dp"
+                android:text="@string/player_melds"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/log_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="339dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="627dp"
-            android:text="@string/log"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ScrollView
-            android:id="@+id/player_hand"
-            android:layout_width="289dp"
-            android:layout_height="54dp"
-            android:layout_marginEnd="138dp"
-            android:contentDescription="@string/player_hand"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.994">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/continue_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
+                android:text="@string/continue_turn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.603" />
 
-        <ScrollView
-            android:id="@+id/computer_melds"
-            android:layout_width="376dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/enemy_melds"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.457"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.232">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/log_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
+                android:layout_marginStart="339dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginBottom="627dp"
+                android:text="@string/log"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <ScrollView
-            android:id="@+id/computer_hand"
-            android:layout_width="311dp"
-            android:layout_height="47dp"
-            android:contentDescription="@string/enemy_hand"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.093">
+            <ScrollView
+                android:id="@+id/player_hand"
+                android:layout_width="289dp"
+                android:layout_height="54dp"
+                android:layout_marginEnd="138dp"
+                android:contentDescription="@string/player_hand"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.994">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/computer_melds"
+                android:layout_width="376dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/enemy_melds"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.457"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.232">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/computer_hand"
+                android:layout_width="311dp"
+                android:layout_height="47dp"
+                android:contentDescription="@string/enemy_hand"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.093">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/player_melds"
+                style="@style/human_melds"
+                android:layout_width="381dp"
+                android:layout_height="45dp"
+                android:contentDescription="@string/player_melds"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.484"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.723">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+            <TextView
+                android:id="@+id/discard_pile_text"
+                android:layout_width="114dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="247dp"
+                android:layout_marginEnd="313dp"
+                android:layout_marginBottom="458dp"
+                android:text="@string/discard_pile"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/round_text"
+                android:layout_width="78dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="114dp"
+                android:layout_marginTop="305dp"
+                android:layout_marginEnd="235dp"
+                android:layout_marginBottom="403dp"
+                android:text="@string/Round"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/score_text_human_num"
+                android:layout_width="103dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="289dp"
+                android:layout_marginTop="466dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="246dp"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/discard_pile_image"
+                android:layout_width="69dp"
+                android:layout_height="118dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="281dp"
+                android:layout_marginEnd="356dp"
+                android:layout_marginBottom="340dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/card_back" />
+
+            <ImageView
+                android:id="@+id/stock_pile_image"
+                android:layout_width="69dp"
+                android:layout_height="118dp"
+                android:layout_marginStart="335dp"
+                android:layout_marginTop="281dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="340dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/card_back" />
+
+            <TextView
+                android:id="@+id/turn"
+                android:layout_width="58dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="219dp"
+                android:layout_marginTop="335dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="374dp"
+                android:text="turn"
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/instruction_text"
+                android:layout_width="231dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="366dp"
+                android:layout_marginEnd="112dp"
+                android:layout_marginBottom="331dp"
+                android:text="Draw a card from stock or discard."
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/advice_button"
+                android:layout_width="113dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="298dp"
+                android:layout_marginTop="673dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="5dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:text="@string/advice"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="412dp"
+                android:layout_marginEnd="311dp"
+                android:layout_marginBottom="279dp"
+                android:text="@string/save_game"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ScrollView
-            android:id="@+id/player_melds"
-            style="@style/human_melds"
-            android:layout_width="381dp"
-            android:layout_height="45dp"
-            android:contentDescription="@string/player_melds"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.723">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/quit_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
+                android:layout_marginStart="304dp"
+                android:layout_marginTop="412dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="279dp"
+                android:text="@string/quit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/discard_pile_text"
-            android:layout_width="114dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="247dp"
-            android:layout_marginEnd="313dp"
-            android:layout_marginBottom="458dp"
-            android:text="@string/discard_pile"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/cancel_operation_button"
+                android:layout_width="159dp"
+                android:layout_height="51dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="240dp"
+                android:layout_marginEnd="138dp"
+                android:layout_marginBottom="448dp"
+                android:text="@string/cancel_operation"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/round_text"
-            android:layout_width="78dp"
-            android:layout_height="31dp"
-            android:layout_marginStart="114dp"
-            android:layout_marginTop="305dp"
-            android:layout_marginEnd="235dp"
-            android:layout_marginBottom="403dp"
-            android:text="@string/Round"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/end_phase_button"
+                android:layout_width="89dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="315dp"
+                android:layout_marginTop="565dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="125dp"
+                android:text="@string/end_meld_phase"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/score_text_human_num"
-            android:layout_width="103dp"
-            android:layout_height="27dp"
-            android:layout_marginStart="289dp"
-            android:layout_marginTop="466dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="246dp"
-            android:text="0"
-            android:textAlignment="textEnd"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/discard_pile_image"
-            android:layout_width="69dp"
-            android:layout_height="118dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="281dp"
-            android:layout_marginEnd="356dp"
-            android:layout_marginBottom="340dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.125"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/card_back" />
-
-        <ImageView
-            android:id="@+id/stock_pile_image"
-            android:layout_width="69dp"
-            android:layout_height="118dp"
-            android:layout_marginStart="335dp"
-            android:layout_marginTop="281dp"
-            android:layout_marginEnd="23dp"
-            android:layout_marginBottom="340dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/card_back" />
-
-        <TextView
-            android:id="@+id/turn"
-            android:layout_width="58dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="219dp"
-            android:layout_marginTop="335dp"
-            android:layout_marginEnd="150dp"
-            android:layout_marginBottom="374dp"
-            android:text="turn"
-            android:textAlignment="viewStart"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/instruction_text"
-            android:layout_width="231dp"
-            android:layout_height="42dp"
-            android:layout_marginStart="84dp"
-            android:layout_marginTop="366dp"
-            android:layout_marginEnd="112dp"
-            android:layout_marginBottom="331dp"
-            android:text="Draw a card from stock or discard."
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/advice_button"
-            android:layout_width="113dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="298dp"
-            android:layout_marginTop="673dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="5dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:text="@string/advice"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="412dp"
-            android:layout_marginEnd="311dp"
-            android:layout_marginBottom="279dp"
-            android:text="@string/save_game"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/quit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="304dp"
-            android:layout_marginTop="412dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="279dp"
-            android:text="@string/quit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/cancel_operation_button"
-            android:layout_width="159dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="240dp"
-            android:layout_marginEnd="138dp"
-            android:layout_marginBottom="448dp"
-            android:text="@string/cancel_operation"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/end_phase_button"
-            android:layout_width="89dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="315dp"
-            android:layout_marginTop="565dp"
-            android:layout_marginEnd="23dp"
-            android:layout_marginBottom="125dp"
-            android:text="@string/end_meld_phase"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/enemy_hand_text"

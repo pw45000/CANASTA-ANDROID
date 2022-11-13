@@ -46,6 +46,8 @@
     <string name ="create_meld"> Create Meld</string>
     <string name= "add_meld"> Add to Meld</string>
     <string name = "transfer_wild_cards">Transfer Cards</string>
+    <string name= "file_load_fail"> File failed to load, file doesn't exist!</string>
+
 
     <string name= "input_file_prompt"> Input a file: </string>
 
