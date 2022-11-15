@@ -10,8 +10,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 
 
@@ -130,5 +128,6 @@ public class coin_toss extends AppCompatActivity {
         //Gson gson = new Gson();
         intent.putExtra("Round", new_round);
         startActivity(intent);
+        finish();
     }
 }

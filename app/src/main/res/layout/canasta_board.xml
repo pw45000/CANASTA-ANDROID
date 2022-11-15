@@ -402,10 +402,28 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.088"
+            app:layout_constraintHorizontal_bias="0.354"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.72" />
+            app:layout_constraintVertical_bias="0.88" />
+
+        <TextView
+            android:id="@+id/meld_hint"
+            android:layout_width="251dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="693dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="81dp"
+            android:text="Tap on a meld to see it's cards."
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/player_melds_text"

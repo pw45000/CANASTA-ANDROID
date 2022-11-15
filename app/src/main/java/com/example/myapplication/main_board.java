@@ -24,8 +24,6 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -91,6 +89,7 @@ public class main_board extends AppCompatActivity {
 
         EditText save_file_input;
         TextView save_file_prompt;
+        TextView meld_hint;
 
 
         String phase ="none";
@@ -140,6 +139,7 @@ public class main_board extends AppCompatActivity {
             //https://stackoverflow.com/questions/15655274/horizontalscrollview-get-visible-children
             //https://stackoverflow.com/questions/8452677/why-does-findviewbyid-return-null
 
+            meld_hint = findViewById(R.id.meld_hint);
 
             discard_pile_image = findViewById(R.id.discard_pile_image);
             stock_pile_image = findViewById(R.id.stock_pile_image);
@@ -388,6 +388,7 @@ public class main_board extends AppCompatActivity {
         intent.putExtra("Round",model_round);
         intent.putExtra("log", pop_up_log.getText().toString());
         startActivity(intent);
+        finish();
     }
 
     void player_go_out(View view) {
@@ -821,6 +822,7 @@ public class main_board extends AppCompatActivity {
     }
 
     void create_meld_operation(View view) {
+        meld_hint.setVisibility(view.INVISIBLE);
         operation = "create meld";
         set_instruction_text();
         set_meld_operations_visibility(false);
@@ -828,12 +830,14 @@ public class main_board extends AppCompatActivity {
     }
 
     void add_to_meld_operation(View view) {
+        meld_hint.setVisibility(view.INVISIBLE);
         operation = "add to meld get card";
         set_instruction_text();
         set_meld_operations_visibility(false);
         cancel_operation_button.setVisibility(View.VISIBLE);
     }
     void transfer_card_operation(View view) {
+        meld_hint.setVisibility(view.INVISIBLE);
         operation = "transfer card choose donor";
         set_instruction_text();
         set_meld_operations_visibility(false);
@@ -841,6 +845,7 @@ public class main_board extends AppCompatActivity {
     }
 
     void end_meld_phase (View view) {
+        meld_hint.setVisibility(view.VISIBLE);
         cancel_all_meld_operations(view);
         set_meld_operations_visibility(false);
         remove_all_card_views();
@@ -954,6 +959,7 @@ public class main_board extends AppCompatActivity {
     }
 
     void cancel_all_meld_operations(View view) {
+        meld_hint.setVisibility(view.VISIBLE);
         potential_meld.clear();
         potential_meld_pos.clear();
         add_onto_pos = -1;

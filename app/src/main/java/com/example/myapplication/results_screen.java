@@ -110,10 +110,12 @@ public class results_screen extends AppCompatActivity {
             new_round.sort_players_hands();
             r_intent.putExtra("Round", new_round);
             startActivity(r_intent);
+            finish();
         }
         else {
             c_intent.putExtra("Round", model_round);
             startActivity(c_intent);
+            finish();
         }
 
 
@@ -122,6 +124,7 @@ public class results_screen extends AppCompatActivity {
     void return_to_menu(View view) {
         Intent intent = new Intent(this, main_menu.class);
         startActivity(intent);
+        finish();
     }
 
     void end_game (View view) {

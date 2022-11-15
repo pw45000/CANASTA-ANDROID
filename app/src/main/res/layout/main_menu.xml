@@ -134,7 +134,7 @@
         android:layout_width="215dp"
         android:layout_height="48dp"
         android:inputType="text"
-        android:text="c2.txt"
+        android:text="input file here..."
         android:textSize="24sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"

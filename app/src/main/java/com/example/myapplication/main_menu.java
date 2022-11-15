@@ -29,8 +29,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 
@@ -70,15 +68,15 @@ public class main_menu extends AppCompatActivity{
     public void load_coin_toss(View view){
         Intent intent = new Intent(this, coin_toss.class);
         startActivity(intent);
+        finish();
     }
 
     public void load_preloaded_game(View view, Round parsed_file_contents){
         Intent intent = new Intent(this, main_board.class);
-        Gson gson = new Gson();
         //intent.putExtra("Round", gson.toJson(parsed_file_contents));
         intent.putExtra("Round", parsed_file_contents);
-
         startActivity(intent);
+        finish();
     }
 
     public void load_file_menu(View view) {

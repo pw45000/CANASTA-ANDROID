@@ -1314,7 +1314,20 @@ public class Hand implements Serializable
 	********************************************************************* */
 	public final void sort()
 	{
-		Collections.sort(hand_container);
+		//Collections.sort(hand_container);
+		Collections.sort(hand_container, new Comparator <Card>() {
+			public int compare (Card lhs, Card rhs) {
+				if (lhs.get_point_value() < rhs.get_point_value()) {
+					return -1;
+				}
+				else if (lhs.get_point_value() > rhs.get_point_value()) {
+					return 1;
+				}
+				else {
+					return 0;
+				}
+			}
+		});
 	}
 
 
