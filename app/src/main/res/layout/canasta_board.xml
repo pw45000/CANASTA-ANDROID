@@ -2,521 +2,737 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mat">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/save_game_display"
+        android:layout_width="304dp"
+        android:layout_height="201dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginBottom="489dp"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.254"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pop_up_layout"
+        android:layout_width="317dp"
+        android:layout_height="380dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="145dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="282dp"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <Button
+            android:id="@+id/save_game_file_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="173dp"
+            android:layout_marginBottom="5dp"
+            android:onClick="save_game_file"
+            android:text="Save Game"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.461"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.921"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/save_file_prompt"
+            android:layout_width="279dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="103dp"
+            android:text="Input your file save name:"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+
+        <EditText
+            android:id="@+id/save_file_input"
+            android:layout_width="286dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="85dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="50dp"
+            android:text="Input file name here..."
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+
+        <Button
+            android:id="@+id/pop_up_dismiss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="205dp"
+            android:layout_marginTop="316dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="dismiss_pop_up"
+            android:text="Dismiss"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pop_up_advice"
+            android:layout_width="230dp"
+            android:layout_height="246dp"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/pop_up_log"
+            android:layout_width="230dp"
+            android:layout_height="246dp"
+            android:gravity="bottom"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbars="vertical"
+            android:textColor="#000000"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/pop_up_title"
+            android:layout_width="267dp"
+            android:layout_height="67dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="313dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="48sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pop_up_error_message"
+            android:layout_width="290dp"
+            android:layout_height="222dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="98dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="158dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="34sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.203" />
+
+        <TextView
+            android:id="@+id/pop_up_info"
+            android:layout_width="290dp"
+            android:layout_height="222dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="98dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="158dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="34sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.203"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/go_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="209dp"
+            android:layout_marginBottom="8dp"
+            android:text="Go Out"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pop_up_info"
+            app:layout_constraintVertical_bias="0.666" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_game_board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/mat"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/mat">
+        <Button
+            android:id="@+id/add_to_meld_button"
+            android:layout_width="89dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="565dp"
+            android:layout_marginEnd="224dp"
+            android:layout_marginBottom="125dp"
+            android:text="@string/add_meld"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.794" />
 
-            <Button
-                android:id="@+id/add_to_meld_button"
-                android:layout_width="89dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="114dp"
-                android:layout_marginTop="565dp"
-                android:layout_marginEnd="224dp"
-                android:layout_marginBottom="125dp"
-                android:text="@string/add_meld"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/transfer_cards_button"
+            android:layout_width="91dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="565dp"
+            android:layout_marginEnd="123dp"
+            android:layout_marginBottom="118dp"
+            android:text="@string/transfer_wild_cards"
+            android:textSize="10sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.585"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7" />
 
-            <Button
-                android:id="@+id/transfer_cards_button"
-                android:layout_width="91dp"
-                android:layout_height="54dp"
-                android:layout_marginStart="220dp"
-                android:layout_marginTop="565dp"
-                android:layout_marginEnd="123dp"
-                android:layout_marginBottom="118dp"
-                android:text="@string/transfer_wild_cards"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.652"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+        <Button
+            android:id="@+id/create_meld_button"
+            android:layout_width="89dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="565dp"
+            android:layout_marginEnd="324dp"
+            android:layout_marginBottom="125dp"
+            android:text="@string/create_meld"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.794" />
 
-            <Button
-                android:id="@+id/create_meld_button"
-                android:layout_width="89dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="565dp"
-                android:layout_marginEnd="324dp"
-                android:layout_marginBottom="125dp"
-                android:text="@string/create_meld"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/round_number_text"
+            android:layout_width="118dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="198dp"
+            android:layout_marginTop="305dp"
+            android:layout_marginEnd="111dp"
+            android:layout_marginBottom="404dp"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/round_number_text"
-                android:layout_width="118dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="198dp"
-                android:layout_marginTop="305dp"
-                android:layout_marginEnd="111dp"
-                android:layout_marginBottom="404dp"
-                android:text="0"
-                android:textAlignment="textEnd"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/player_turn_text"
+            android:layout_width="103dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="91dp"
+            android:layout_marginTop="335dp"
+            android:layout_marginEnd="233dp"
+            android:layout_marginBottom="373dp"
+            android:text="Computer's"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/player_turn_text"
-                android:layout_width="103dp"
-                android:layout_height="31dp"
-                android:layout_marginStart="91dp"
-                android:layout_marginTop="335dp"
-                android:layout_marginEnd="233dp"
-                android:layout_marginBottom="373dp"
-                android:text="Computer's"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/score_text_computer_num"
+            android:layout_width="111dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="283dp"
+            android:layout_marginTop="126dp"
+            android:layout_marginEnd="33dp"
+            android:layout_marginBottom="582dp"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/score_text_computer_num"
-                android:layout_width="111dp"
-                android:layout_height="31dp"
-                android:layout_marginStart="283dp"
-                android:layout_marginTop="126dp"
-                android:layout_marginEnd="33dp"
-                android:layout_marginBottom="582dp"
-                android:text="0"
-                android:textAlignment="textEnd"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/score_text_computer"
+            android:layout_width="88dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="194dp"
+            android:layout_marginTop="126dp"
+            android:layout_marginEnd="145dp"
+            android:layout_marginBottom="583dp"
+            android:text="@string/score"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/score_text_computer"
-                android:layout_width="88dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="194dp"
-                android:layout_marginTop="126dp"
-                android:layout_marginEnd="145dp"
-                android:layout_marginBottom="583dp"
-                android:text="@string/score"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/score_text_human"
+            android:layout_width="88dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="201dp"
+            android:layout_marginTop="466dp"
+            android:layout_marginEnd="138dp"
+            android:layout_marginBottom="243dp"
+            android:text="@string/score"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.441"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/score_text_human"
-                android:layout_width="88dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="201dp"
-                android:layout_marginTop="466dp"
-                android:layout_marginEnd="138dp"
-                android:layout_marginBottom="243dp"
-                android:text="@string/score"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.875" />
+        <TextView
+            android:id="@+id/stock_pile_text"
+            android:layout_width="95dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="316dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="466dp"
+            android:text="@string/stock_pile"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.852"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/stock_pile_text"
-                android:layout_width="95dp"
-                android:layout_height="33dp"
-                android:layout_marginStart="316dp"
-                android:layout_marginTop="240dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="466dp"
-                android:text="@string/stock_pile"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/enemy_meld_text"
+            android:layout_width="173dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="220dp"
+            android:layout_marginBottom="615dp"
+            android:text="@string/enemy_melds"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/your_melds_text"
-                android:layout_width="181dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="643dp"
-                android:layout_marginEnd="246dp"
-                android:layout_marginBottom="66dp"
-                android:text="@string/player_hand"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/your_melds_text"
+            android:layout_width="116dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="643dp"
+            android:layout_marginEnd="246dp"
+            android:layout_marginBottom="66dp"
+            android:text="@string/player_hand"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.088"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.72" />
 
-            <TextView
-                android:id="@+id/player_melds_text"
-                android:layout_width="181dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="466dp"
-                android:layout_marginEnd="226dp"
-                android:layout_marginBottom="243dp"
-                android:text="@string/player_melds"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/player_melds_text"
+            android:layout_width="181dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="466dp"
+            android:layout_marginEnd="226dp"
+            android:layout_marginBottom="243dp"
+            android:text="@string/player_melds"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/continue_button"
+        <Button
+            android:id="@+id/continue_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/continue_turn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.587" />
+
+        <Button
+            android:id="@+id/log_button"
+            android:layout_width="66dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="194dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="718dp"
+            android:onClick="show_log"
+            android:text="@string/log"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <HorizontalScrollView
+            android:id="@+id/human_hand"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:layout_marginEnd="138dp"
+            android:contentDescription="@string/player_hand"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.988">
+
+            <LinearLayout
+                android:id="@+id/human_hand_lin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="clip_horizontal"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+        <HorizontalScrollView
+            android:id="@+id/computer_melds"
+            android:layout_width="400dp"
+            android:layout_height="70dp"
+            android:contentDescription="@string/enemy_melds"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.457"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.273">
+
+            <LinearLayout
+                android:id="@+id/computer_meld_lin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/continue_turn"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.603" />
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
 
-            <Button
-                android:id="@+id/log_button"
+        <HorizontalScrollView
+            android:id="@+id/computer_hand"
+            android:layout_width="400dp"
+            android:layout_height="74dp"
+            android:contentDescription="@string/enemy_hand"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.117">
+
+            <LinearLayout
+                android:id="@+id/computer_hand_lin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="339dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginBottom="627dp"
-                android:text="@string/log"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
 
-            <ScrollView
-                android:id="@+id/player_hand"
-                android:layout_width="289dp"
-                android:layout_height="54dp"
-                android:layout_marginEnd="138dp"
-                android:contentDescription="@string/player_hand"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.994">
+        <HorizontalScrollView
+            android:id="@+id/human_melds"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:contentDescription="@string/player_melds"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.723">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
-
-            <ScrollView
-                android:id="@+id/computer_melds"
-                android:layout_width="376dp"
-                android:layout_height="50dp"
-                android:contentDescription="@string/enemy_melds"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.457"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.232">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
-
-            <ScrollView
-                android:id="@+id/computer_hand"
-                android:layout_width="311dp"
-                android:layout_height="47dp"
-                android:contentDescription="@string/enemy_hand"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.093">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
-
-            <ScrollView
-                android:id="@+id/player_melds"
-                style="@style/human_melds"
-                android:layout_width="381dp"
-                android:layout_height="45dp"
-                android:contentDescription="@string/player_melds"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.484"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.723">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </ScrollView>
-
-            <TextView
-                android:id="@+id/discard_pile_text"
-                android:layout_width="114dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="247dp"
-                android:layout_marginEnd="313dp"
-                android:layout_marginBottom="458dp"
-                android:text="@string/discard_pile"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/round_text"
-                android:layout_width="78dp"
-                android:layout_height="31dp"
-                android:layout_marginStart="114dp"
-                android:layout_marginTop="305dp"
-                android:layout_marginEnd="235dp"
-                android:layout_marginBottom="403dp"
-                android:text="@string/Round"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/score_text_human_num"
-                android:layout_width="103dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="289dp"
-                android:layout_marginTop="466dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginBottom="246dp"
-                android:text="0"
-                android:textAlignment="textEnd"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/discard_pile_image"
-                android:layout_width="69dp"
-                android:layout_height="118dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="281dp"
-                android:layout_marginEnd="356dp"
-                android:layout_marginBottom="340dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.125"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/card_back" />
-
-            <ImageView
-                android:id="@+id/stock_pile_image"
-                android:layout_width="69dp"
-                android:layout_height="118dp"
-                android:layout_marginStart="335dp"
-                android:layout_marginTop="281dp"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="340dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/card_back" />
-
-            <TextView
-                android:id="@+id/turn"
-                android:layout_width="58dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="219dp"
-                android:layout_marginTop="335dp"
-                android:layout_marginEnd="150dp"
-                android:layout_marginBottom="374dp"
-                android:text="turn"
-                android:textAlignment="viewStart"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/instruction_text"
-                android:layout_width="231dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="84dp"
-                android:layout_marginTop="366dp"
-                android:layout_marginEnd="112dp"
-                android:layout_marginBottom="331dp"
-                android:text="Draw a card from stock or discard."
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/advice_button"
-                android:layout_width="113dp"
-                android:layout_height="61dp"
-                android:layout_marginStart="298dp"
-                android:layout_marginTop="673dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="5dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:text="@string/advice"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/save_button"
+            <LinearLayout
+                android:id="@+id/human_melds_lin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="412dp"
-                android:layout_marginEnd="311dp"
-                android:layout_marginBottom="279dp"
-                android:text="@string/save_game"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
 
-            <Button
-                android:id="@+id/quit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="304dp"
-                android:layout_marginTop="412dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginBottom="279dp"
-                android:text="@string/quit"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/discard_pile_text"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="247dp"
+            android:layout_marginEnd="313dp"
+            android:layout_marginBottom="458dp"
+            android:text="@string/discard_pile"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/cancel_operation_button"
-                android:layout_width="159dp"
-                android:layout_height="51dp"
-                android:layout_marginStart="130dp"
-                android:layout_marginTop="240dp"
-                android:layout_marginEnd="138dp"
-                android:layout_marginBottom="448dp"
-                android:text="@string/cancel_operation"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/round_text"
+            android:layout_width="78dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="305dp"
+            android:layout_marginEnd="235dp"
+            android:layout_marginBottom="403dp"
+            android:text="@string/Round"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/end_phase_button"
-                android:layout_width="89dp"
-                android:layout_height="49dp"
-                android:layout_marginStart="315dp"
-                android:layout_marginTop="565dp"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="125dp"
-                android:text="@string/end_meld_phase"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/score_text_human_num"
+            android:layout_width="103dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="289dp"
+            android:layout_marginTop="466dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="246dp"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/discard_pile_image"
+            android:layout_width="69dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="281dp"
+            android:layout_marginEnd="356dp"
+            android:layout_marginBottom="340dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.125"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/card_back" />
 
-    <TextView
-        android:id="@+id/enemy_hand_text"
-        android:layout_width="162dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="249dp"
-        android:layout_marginBottom="678dp"
-        android:text="@string/enemy_hand"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/stock_pile_image"
+            android:layout_width="69dp"
+            android:layout_height="118dp"
+            android:layout_marginStart="335dp"
+            android:layout_marginTop="281dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="340dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/card_back" />
 
-    <TextView
-        android:id="@+id/enemy_meld_text"
-        android:layout_width="173dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="126dp"
-        android:layout_marginEnd="238dp"
-        android:layout_marginBottom="581dp"
-        android:text="@string/enemy_melds"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/turn"
+            android:layout_width="58dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="219dp"
+            android:layout_marginTop="335dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginBottom="374dp"
+            android:text="turn"
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/instruction_text"
+            android:layout_width="231dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="366dp"
+            android:layout_marginEnd="112dp"
+            android:layout_marginBottom="331dp"
+            android:text="Draw a card from stock or discard."
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/advice_button"
+            android:layout_width="89dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="270dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="718dp"
+            android:adjustViewBounds="true"
+            android:onClick="advice"
+            android:scaleType="fitXY"
+            android:text="@string/advice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="412dp"
+            android:layout_marginEnd="311dp"
+            android:layout_marginBottom="279dp"
+            android:onClick="show_save"
+            android:text="@string/save_game"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/quit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="304dp"
+            android:layout_marginTop="412dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="279dp"
+            android:onClick="quit_to_menu"
+            android:text="@string/quit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/cancel_operation_button"
+            android:layout_width="159dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="138dp"
+            android:layout_marginBottom="448dp"
+            android:text="@string/cancel_operation"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/end_phase_button"
+            android:layout_width="89dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="315dp"
+            android:layout_marginTop="565dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="125dp"
+            android:text="@string/end_meld_phase"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.588"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.794" />
+
+        <TextView
+            android:id="@+id/enemy_hand_text"
+            android:layout_width="162dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="198dp"
+            android:layout_marginBottom="720dp"
+            android:text="@string/enemy_hand"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
