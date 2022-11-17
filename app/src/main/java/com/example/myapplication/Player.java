@@ -1454,6 +1454,7 @@ public abstract class Player implements Serializable
 
 
 
+
 		if (preference_discard.size() != 0 && !has_discarded_three)
 		{
 			preferred_card.copyFrom(preference_discard.get(0));
@@ -1473,7 +1474,7 @@ public abstract class Player implements Serializable
 				System.out.print("You should get rid of ");
 				System.out.print(preferred_card.get_card_string());
 				System.out.print(" since it the lowest value  ");
-				System.out.print("In the your hand hand, @");
+				System.out.print("In the your hand, @");
 				System.out.print(preferred_card.get_point_value());
 				System.out.print(" points, and is not in any of the enemy's melds, and wasn't a wild card.");
 				System.out.print("\n");
