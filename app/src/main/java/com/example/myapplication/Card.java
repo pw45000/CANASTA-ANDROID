@@ -4,15 +4,9 @@ import java.io.*;
 
 /* ***********************************************************
 * Name:  Patrick Wierzbicki*
-* Project : Canasta C++ Project 1*
+* Project : Canasta Project 3 *
 * Class : CMPS-366-01*
-* Date : 9/28/22*
-*********************************************************** */
-/* ***********************************************************
-* Name:  Patrick Wierzbicki*
-* Project : Cansta P1*
-* Class : class numberand name here*
-* Date : 9/28/22*
+* Date : 11/16/22*
 *********************************************************** */
 
 
@@ -21,12 +15,20 @@ public final class Card implements Comparable<Card>, Serializable
 
 	/* *********************************************************************
 	Function Name: Card
-	Purpose: The default constructor of the Card class. Uses constructor member initilization.
+	Purpose:
 	Parameters: none
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	private char face;
+	private char suit;
+	private String string_representation;
+	private int point_value;
+	private boolean has_transferred;
 
+	/**
+	 The default constructor of the Card class. Uses constructor member initialization.
+	 */
 	public Card()
 	{
 		this.face = 0;
@@ -55,6 +57,12 @@ public final class Card implements Comparable<Card>, Serializable
 	Assistance Received: none
 	********************************************************************* */
 
+	/**
+	 The constructor for the Card class that passes a suit and int to construct a Card.
+	 @param suit a passed by value integer that represents the suit of the card (0-3).
+	 @param face a passed by value integer that represents the face of the card (2-14),
+	 where 11-13 are the royal faces: ace, jack, queen, king
+	 */
 	public Card(int suit, int face)
 	{
 		translate_to_symbolic_rep(face, suit);
@@ -77,6 +85,14 @@ public final class Card implements Comparable<Card>, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 The "full" constructor of the Card Class. The parameters passed are all the data members the card has.
+	 @param suit an integer that represents the suit of the card (0-3).
+	 @param face integer that represents the face of the card (2-14), where 11-13 are the royal faces: ace, jack, queen, king.
+	 @param string_reprensentation The string representation of the Card passed by value. For instance, a three of hearts is 3H.
+	 @param point_value An integer representing the Card's value in points. For instance, if the card is 3H, it will be
+	 worth 100 points.
+	 */
 	public Card(char face, char suit, String string_reprensentation, int point_value)
 	{
 		this.face = face;
@@ -98,6 +114,11 @@ public final class Card implements Comparable<Card>, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 The constructor for only being passed a string representation, which fills in the rest of it's with the string representation.
+	 @param string_representation  A string which represents the string value of the Cards.
+	 */
 	public Card(String string_representation)
 	{
 		this.string_representation = string_representation;
@@ -115,6 +136,11 @@ public final class Card implements Comparable<Card>, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 The constructor for only being passed a string representation, which fills in the rest of it's with the string representation.
+	 @param other_card  a Card reference to the Card being copied from.
+	 */
 	public Card(final Card other_card)
 	{
 		point_value = other_card.get_point_value();
@@ -134,6 +160,12 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER NOTE: This 'copyFrom' method was converted from the original copy assignment operator:
 //ORIGINAL LINE: Card operator =(const Card& other_card)
+
+	/**
+	 The Java equivalent of a copy assignment operator for the Card class.
+	 @param other_card Describe the parameter, starting with its data type
+	 @return A Card from which the Card is being copied from.
+	 */
 	public Card copyFrom(final Card other_card)
 	{
 		this.face = other_card.face;
@@ -156,6 +188,9 @@ public final class Card implements Comparable<Card>, Serializable
 	Assistance Received: none
 	********************************************************************* */
 
+	/**
+	 The Java equivalent of a destructor operator for the Card class.
+	 */
 	public final void close()
 	{
 		face = '0';
@@ -189,6 +224,14 @@ public final class Card implements Comparable<Card>, Serializable
 	I decided to append it based upon this answer: 
 	https://stackoverflow.com/questions/51017979/joining-two-characters-in-c
 	********************************************************************* */
+
+
+	/**
+	 Translate the integers representing the face and suit into their char representations and create a string representation using those two chars.
+	 @param face an integer that represents the face of the card (2-14),
+	 @param suit an integer that represents the suit of the card (0-3).
+	 */
+
 	public final void translate_to_symbolic_rep(int face, int suit)
 	{
 
@@ -268,6 +311,13 @@ public final class Card implements Comparable<Card>, Serializable
 					2) Assign point value within individual cases. 
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 Calculate the point value of each Card.
+	 @param face a char that represents the face of the card,
+	 @param suit an integer that represents the suit of the card (0-3).
+	 @return What the function returns - don't include if void. Also list special cases, such as what is returned if error.
+	 */
 	public final void calculate_point_value(char face, char suit)
 	{
 		//This switch case uses multiple cases.
@@ -328,6 +378,11 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: char get_card_face() const
+
+	/**
+	 Selector for the face variable.
+	 @return face, a char representing the card's face.
+	 */
 	public final char get_card_face()
 	{
 		return face;
@@ -343,6 +398,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: char get_card_suit() const
+	/**
+	 Selector for the suit variable.
+	 @return suit, a char representing the card's suit.
+	 */
 	public final char get_card_suit()
 	{
 		return suit;
@@ -359,6 +418,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: String get_card_string() const
+	/**
+	 Selector for the string_representation variable.
+	 @return string_representation, string_representation, a string representing the card face and suit. An example would be a three of hearts being 3H.
+	 */
 	public final String get_card_string()
 	{
 		return string_representation;
@@ -374,6 +437,11 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_point_value() const
+
+	/**
+	 Selector for the point_value variable.
+	 @return  point_value, a int representing the card.
+	 */
 	public final int get_point_value()
 	{
 		return point_value;
@@ -389,6 +457,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean isWild() const
+	/**
+	 Returns if the current card is a wild card or not.
+	 @return : bool for if the current card is a wild card or not.
+	 */
 	public final boolean isWild()
 	{
 		//Jokers are notated as J1, J2, so their
@@ -413,6 +485,11 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean isSpecial() const
+
+	/**
+	 Returns if the current card is a special card or not.
+	 @return : bool for if the current card is a special card or not.
+	 */
 	public final boolean isSpecial()
 	{
 		if (face == '3')
@@ -435,6 +512,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean isNatural() const
+	/**
+	 Returns if the current card is a natural card or not.
+	 @return : bool for if the current card is a natural card or not.
+	 */
 	public final boolean isNatural()
 	{
 		return (!(isSpecial() || isWild()));
@@ -449,6 +530,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean is_red_three() const
+	/**
+	 Returns if the current card is a red three or not.
+	 @return : bool for if the current card is a red three or not.
+	 */
 	public final boolean is_red_three()
 	{
 		if (string_representation.equals("3H") || string_representation.equals("3D"))
@@ -471,6 +556,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean is_joker() const
+	/**
+	 Returns if the current card is a joker or not.
+	 @return : bool for if the current card is a joker or not.
+	 */
 	public final boolean is_joker()
 	{
 		return (Character.isDigit(suit));
@@ -487,6 +576,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean get_has_transferred() const
+	/**
+	 Returns Returns if the current card is transferred by getting the data member variable has_transferred, which represents this symbolically.
+	 @return : bool for if the data member variable has_transferred is true or false.
+	 */
 	public final boolean get_has_transferred()
 	{
 		return has_transferred;
@@ -513,6 +606,10 @@ public final class Card implements Comparable<Card>, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_numeric_value() const
+	/**
+	 Gets an integer representing the face of the card.
+	 @return int representing the integer value of the face of the card.
+	 */
 	public final int get_numeric_value()
 	{
 		//this is a value that helps us convert chars to ints using ASCII arithimetic.
@@ -557,27 +654,38 @@ public final class Card implements Comparable<Card>, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Sets the data member has_transferred.
+	 @param has_transferred boolean which represents what to set the variable to.
+	 @return What the function returns - don't include if void. Also list special cases, such as what is returned if error.
+	 */
 	public final void set_has_transferred(boolean has_transferred)
 	{
 		this.has_transferred = has_transferred;
 	}
-	
-	
-	
-	
-	
-	
-	
-	private char face;
-	private char suit;
-	private String string_representation;
-	private int point_value;
-	private boolean has_transferred;
+
+
+
+
+
+
+
+	/**
+	 The Java equivalent of an < operator for the Card class.
+	 @param other_card a Card which represents the other card to compare to.
+	 @return int, 1 if the card is  less than the other card, 0 if that is not the case.
+	 */
 	@Override
 	public int compareTo(Card other_card) {
 		// TODO Auto-generated method stub
 		return (this.point_value < other_card.get_point_value()) ? 1: 0;
 	}
+
+
+	/**
+	 An overrided hashCode operator.
+	 @return int, representing the hashcode of the Java object.
+	 */
 	@Override
 	public int hashCode() {
 		int hash = 7;
@@ -588,6 +696,11 @@ public final class Card implements Comparable<Card>, Serializable
 		hash = 11 * hash + Boolean.valueOf(has_transferred).hashCode();
 		return hash;
 	}
+	/**
+	 The Java equivalent of an == operator for the Card class.
+	 @param rhs an Object which represents the other card to compare to.
+	 @return boolean, which represents if the Card is equal to an Object.
+	 */
 	@Override
 	public boolean equals(Object rhs) {
 		if (this==rhs)
@@ -609,15 +722,6 @@ public final class Card implements Comparable<Card>, Serializable
 		
 	}
 
-	//private Card(Card rhs) {
-		// TODO Auto-generated method stub
-	//	this.point_value=rhs.get_point_value();
-	//	this.face = rhs.get_card_face();
-	//	this.suit = rhs.get_card_suit();
-	//	this.string_representation = rhs.get_card_string();
-	//	this.point_value = rhs.get_point_value();
-		//return this;
-	//}
 	
 	
 	

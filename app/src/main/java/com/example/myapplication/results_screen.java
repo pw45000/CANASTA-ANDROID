@@ -8,27 +8,35 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+/* ***********************************************************
+ * Name:  Patrick Wierzbicki*
+ * Project : Canasta Project 3 *
+ * Class : CMPS-366-01*
+ * Date : 11/16/22*
+ *********************************************************** */
 public class results_screen extends AppCompatActivity {
-    Button yes;
-    Button no;
-    Button exit;
+    private Button yes;
+    private Button no;
+    private Button exit;
 
-    TextView p1_score_game_text;
-    TextView p2_score_game_text;
-    TextView p1_score_game;
-    TextView p2_score_game;
-    TextView p1_score_round;
-    TextView p2_score_round;
-    TextView play_again;
-    TextView winner_text;
-    TextView winner_decide;
-    TextView log;
+    private TextView p1_score_game_text;
+    private TextView p2_score_game_text;
+    private TextView p1_score_game;
+    private TextView p2_score_game;
+    private TextView p1_score_round;
+    private TextView p2_score_round;
+    private TextView play_again;
+    private TextView winner_text;
+    private TextView winner_decide;
+    private TextView log;
 
-    Round model_round;
+    private Round model_round;
 
 
-
+    /**
+     Creates the Activity, and instantiates all view variables.
+     @param savedInstanceState Bundle, from which the Activity will be made with.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results_screen);
@@ -86,7 +94,10 @@ public class results_screen extends AppCompatActivity {
 
     }
 
-
+    /**
+     Gets who has a higher score based on the data.
+     @return String representing who got a higher score, a human, a computer, or a tie.
+     */
     String get_higher_score () {
         if (model_round.get_players().get(0).get_score() > model_round.get_players().get(1).get_score())
           return  "Computer";
@@ -97,7 +108,10 @@ public class results_screen extends AppCompatActivity {
     }
 
 
-
+    /**
+     Goes back to main_board view, making a new round accordingly, or if there's a tie, goes back to the coin toss view.
+     @param view, View from which the corresponding button was clicked from.
+     */
     void play_again (View view) {
         Intent r_intent = new Intent(this, main_board.class);
         Intent c_intent = new Intent(this, coin_toss.class);
@@ -120,13 +134,19 @@ public class results_screen extends AppCompatActivity {
 
 
     }
-
+    /**
+     Returns to the main menu.
+     @param view, View from which the corresponding button was clicked from.
+     */
     void return_to_menu(View view) {
         Intent intent = new Intent(this, main_menu.class);
         startActivity(intent);
         finish();
     }
-
+    /**
+     Ends the game, showing the game scores and declaring a winner.
+     @param view, View from which the corresponding button was clicked from.
+     */
     void end_game (View view) {
         yes.setVisibility(View.INVISIBLE);
         no.setVisibility(View.INVISIBLE);

@@ -9,11 +9,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /* ***********************************************************
-* Name:  Patrick Wierzbicki*
-* Project : Canasta C++ Project 1*
-* Class : CMPS-366-01*
-* Date : 9/28/22*
-*********************************************************** */
+ * Name:  Patrick Wierzbicki*
+ * Project : Canasta Project 3 *
+ * Class : CMPS-366-01*
+ * Date : 11/16/22*
+ *********************************************************** */
 
 
 
@@ -23,12 +23,9 @@ import java.util.stream.Collectors;
 public abstract class Player implements Serializable
 {
 
-	/* ***********************************************************
-	* Name:  Patrick Wierzbicki*
-	* Project : Canasta C++ Project 1*
-	* Class : CMPS-366-01*
-	* Date : 9/28/22*
-	*********************************************************** */
+	private int score;
+	private Hand player_hand = new Hand();
+	private boolean has_decided_to_go_out;
 
 
 	/* *********************************************************************
@@ -38,6 +35,9 @@ public abstract class Player implements Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Default constructor for the player class.
+	 */
 	public Player()
 	{
 		score = 0;
@@ -55,6 +55,10 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_score() const
+	/**
+	 Selector for the human's score member.
+	 @return int representing the player's score data member.
+	 */
 	public final int get_score()
 	{
 		return score;
@@ -68,18 +72,18 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: Hand get_player_hand() const
+	/**
+	 Selector for the human's hand member.
+	 @return Hand representing the player's hand data member.
+	 */
 	public final Hand get_player_hand()
 	{
 //C++ TO JAVA CONVERTER TODO TASK: The following line was determined to contain a copy constructor call - this should be verified and a copy constructor should be created:
 //ORIGINAL LINE: return player_hand;
 		return player_hand;
 	}
-	public final Hand get_player_hand_safe()
-	{
-//C++ TO JAVA CONVERTER TODO TASK: The following line was determined to contain a copy constructor call - this should be verified and a copy constructor should be created:
-//ORIGINAL LINE: return player_hand;
-		return player_hand;
-	}
+
+
 	/* *********************************************************************
 	Function Name: has_canasta
 	Purpose: Checks if the player has a canasta.
@@ -89,6 +93,10 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean has_canasta() const
+	/**
+	 Returns if the player has a canasta or not from the player's hand.
+	 @return boolean representing if the player has a canasta or not.
+	 */
 	public final boolean has_canasta()
 	{
 		return player_hand.has_canasta();
@@ -104,6 +112,10 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean hand_empty() const
+	/**
+	 Returns if the player's hand is empty.
+	 @return boolean representing if the player's hand is empty or not.
+	 */
 	public final boolean hand_empty()
 	{
 		return player_hand.hand_empty();
@@ -119,6 +131,10 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean can_go_out() const
+	/**
+	 Returns if the player can go out
+	 @return boolean representing if the player can go out or not.
+	 */
 	public final boolean can_go_out()
 	{
 		if (player_hand.hand_empty() == true && has_canasta())
@@ -141,6 +157,10 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean get_go_out_decision() const
+	/**
+	 Returns if the player has decided to go out or not.
+	 @return has_decided_to_go_out, a boolean for if the player has decided to go out for not.
+	 */
 	public final boolean get_go_out_decision()
 	{
 		return has_decided_to_go_out;
@@ -156,6 +176,11 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: STLVector<Card> get_wild_cards_from_vector(STLVector<Card> arbitrary_card_vect) const
+	/**
+	 Get the wild cards from an arbitrary Card ArrayList.
+	 @param arbitrary_card_vect an arbitrary ArrayList from which wild cards are to be extracted from.
+	 @return a vector of Cards, representing all the wild cards in a vector.
+	 */
 	public final ArrayList<Card> get_wild_cards_from_vector(ArrayList<Card> arbitrary_card_vect)
 	{
 		ArrayList<Card> vector_of_wild_cards = new ArrayList<Card>();
@@ -178,6 +203,11 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean meld_of_card_exists(Card card_to_search) const
+	/**
+	 Check if there's a meld of the card passed that matches the face of said card.
+	 @param card_to_search a Card to compare against all the player's melds.
+	 @return a bool, representing if a meld of the card searched already exists.
+	 */
 	public final boolean meld_of_card_exists(Card card_to_search)
 	{
 		return player_hand.meld_exits_already(new Card(card_to_search));
@@ -192,6 +222,11 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_absolute_pos_from_relative_meld(STLVector<Card> arbitrary_meld_vect) const
+	/**
+	 Get an absolute position in the unsorted vector of melds given a vector that has been found.
+	 @param arbitrary_meld_vect a vector of Cards representing the meld to search.
+	 @return a int, representing the absolute position of the passed vector in the current melds.
+	 */
 	public final int get_absolute_pos_from_relative_meld(ArrayList<Card> arbitrary_meld_vect)
 	{
 		int first_element = 0;
@@ -218,6 +253,10 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: void print_vector(STLVector<Card> vector_to_print) const
+	/**
+	 Prints an arbitrary ArrayList, adding brackets inbetween to represent a meld.
+	 @param vector_to_print, an Arraylist representing a meld.
+	 */
 	public final void print_vector(ArrayList<Card> vector_to_print)
 	{
 		System.out.print("[");
@@ -240,6 +279,10 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: void print_meld(int meld_pos) const
+	/**
+	 Prints a meld in the player's Hand's meld container.
+	 @param meld_pos, an int representing position of the meld to print out.
+	 */
 	public final void print_meld(int meld_pos)
 	{
 		Hand player_hand = get_player_hand();
@@ -256,6 +299,9 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: void temp_print_hand() const
+	/**
+	 To print the contents of the hand and melds during a turn, hence the term temp, as it's not finalized until the end of the round.
+	 */
 	public final void temp_print_hand()
 	{
 		System.out.print("\n");
@@ -291,6 +337,10 @@ public abstract class Player implements Serializable
 	Return Value: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To add a card to the hand by interfacing with the Hand function: add_to_hand.
+	 @param card_to_be_added, a Card, representing which card to add.
+	 */
 	public final void add_to_hand(Card card_to_be_added)
 	{
 		player_hand.add_to_hand(new Card(card_to_be_added));
@@ -304,6 +354,10 @@ public abstract class Player implements Serializable
 	Return Value: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To add a card to the hand by interfacing with the Hand function: add_to_hand(overloaded for a vector of Cards).
+	 @param cards_to_be_added, an ArrayList of Cards, representing which cards to add
+	 */
 	public final void add_to_hand(ArrayList<Card> cards_to_be_added)
 	{
 		player_hand.add_to_hand(new ArrayList<Card>(cards_to_be_added));
@@ -316,6 +370,10 @@ public abstract class Player implements Serializable
 	Return Value: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To create a meld of a red three Card by interfacing with the Hand function: create_meld(overloaded to create a red three meld).
+	 @param card_to_be_added, a Card representing a red three.
+	 */
 	public final boolean create_special_meld(Card card_to_be_added)
 	{
 		return player_hand.create_meld(new Card(card_to_be_added));
@@ -328,6 +386,11 @@ public abstract class Player implements Serializable
 	Return Value: bool, representing if the create meld operation was successful.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 For each function, one-line description of the function
+	 @param potential_meld: an ArrayList of Cards representing the potential meld for which to add.
+	 @return String representing the output of the Hand's create meld function.
+	 */
 	public final String create_meld(ArrayList<Card> potential_meld)
 	{
 		Card meld_card_1 = potential_meld.get(0);
@@ -347,6 +410,13 @@ public abstract class Player implements Serializable
 	Return Value: bool, representing if the create meld operation was successful.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To create a meld of three Cards by interfacing with the Hand function: create_meld(overloaded for a meld of three cards).
+	 @param first the first Card that is passed.
+	 @param second the second Card that is passed.
+	 @param third the third Card that is passed.
+	 @return String representing the output of the Hand's create meld function.
+	 */
 	public final String create_meld(Card first, Card second, Card third)
 	{
 		return player_hand.create_meld(new Card(first), new Card(second), new Card(third));
@@ -361,6 +431,9 @@ public abstract class Player implements Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Removes all red threes from a player's hand.
+	 */
 	public final void purge_red_threes()
 	{
 		player_hand.purge_red_threes();
@@ -376,6 +449,12 @@ public abstract class Player implements Serializable
 	Return Value: bool if the operation was successful or not.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To add a card to a pre-existing meld using the Hand function lay_off.
+	 @param addition a Card which is to be added to a pre-existing meld.
+	 @param meld_number an int representing the meld number from which to add.
+	 @return bool if the operation was successful or not.
+	 */
 	public final String lay_off(Card addition, int meld_number)
 	{
 		return player_hand.lay_off(new Card(addition), meld_number);
@@ -392,6 +471,16 @@ public abstract class Player implements Serializable
 	Returns: bool, which represents if the transfer operation was successful or not.
 	Assistance Received: none
 	********************************************************************* */
+
+
+	/**
+	 To transfer wild cards between melds interfacing with the Hand class's function transfer_wild_card.
+	 @param wild_card A Card which represents the wild card to be transferred.
+	 @param wild_origin an int which represents the position of the meld where the wild card originates from
+	 @param meld_number an int representing the position of the meld which is the wild card's transfer target.
+	 @return bool if the operation was successful or not.
+	 */
+
 	public final boolean transfer_card(Card wild_card, int wild_origin, int meld_number)
 	{
 		//return player_hand.transfer_wild_card(new Card(wild_card), wild_origin, meld_number);
@@ -406,6 +495,11 @@ public abstract class Player implements Serializable
 	Returns: bool, if the operation was successful.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To remove a card from the player's hand.
+	 @param discard_card the Card from which to be discarded.
+	 @return bool, if the operation was successful.
+	 */
 	public final boolean remove_from_hand(Card discard_card)
 	{
 		return player_hand.remove_from_hand(new Card(discard_card));
@@ -418,6 +512,9 @@ public abstract class Player implements Serializable
 	Parameters: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To sort a player's hand.
+	 */
 	public final void sort_hand()
 	{
 		player_hand.sort();
@@ -431,6 +528,9 @@ public abstract class Player implements Serializable
 	Returns: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To clear the transfer state of the player.
+	 */
 	public final void clear_transfer_states()
 	{
 		player_hand.clear_transfer_states();
@@ -444,6 +544,9 @@ public abstract class Player implements Serializable
 	Returns: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To erase the hand of the Player.
+	 */
 	public final void clear_hand()
 	{
 		player_hand.clear_all_data();
@@ -456,6 +559,10 @@ public abstract class Player implements Serializable
 	Returns: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To add to a player's score.
+	 @param score_addition an int from which to add the player's score onto.
+	 */
 	public final void add_to_score(int score_addition)
 	{
 		score += score_addition;
@@ -468,6 +575,10 @@ public abstract class Player implements Serializable
 	Returns: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To set a player's score (data member).
+	 @param score an int from which to set the player's score.
+	 */
 	public final void set_player_score(int score)
 	{
 		this.score = score;
@@ -480,6 +591,10 @@ public abstract class Player implements Serializable
 	Returns: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To setter a player's melds.
+	 @param meld_container a an Arraylist of Arraylists of Cards representing a player's melds to set to.
+	 */
 	public final void set_meld(ArrayList<ArrayList<Card>> meld_container)
 	{
 		player_hand.set_meld(meld_container);
@@ -492,6 +607,10 @@ public abstract class Player implements Serializable
 	Returns: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To setter a player's hand.
+	 @param hand_container a vector of Cards representing a player's hand to set to.
+	 */
 	public final void set_hand(ArrayList<Card> hand_container)
 	{
 		player_hand.set_hand(hand_container);
@@ -504,6 +623,9 @@ public abstract class Player implements Serializable
 	Returns: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To clear all the hand and melds of a player.
+	 */
 	public final void clear_hand_and_meld()
 	{
 		player_hand.clear_all_data();
@@ -521,6 +643,11 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: STLVector<STLVector<Card>> sort_melds(STLVector<STLVector<Card>> melds_to_sort) const
+	/**
+	 Sorts a player's melds in ascending order.
+	 @param melds_to_sort an Arraylist of Arraylist representing the player's melds.
+	 @return an Arraylist representing the sorted melds.
+	 */
 	public final ArrayList<ArrayList<Card>> sort_melds(ArrayList<ArrayList<Card>> melds_to_sort)
 	{
 		int first_card_pos = 0;
@@ -574,17 +701,52 @@ public abstract class Player implements Serializable
 		return new ArrayList<ArrayList<Card>>(melds_to_sort);
 	}
 
-
+	/**
+	 Abstract class representing the Player playing. Deprecated.
+	 @param draw_decks, Deck representing a Player's Deck.
+	 @param enemy_melds, ArrayList of ArrayLists representing A player's melds
+	 @return boolean representing if the Player should quit the Round or not.
+	 */
 	public abstract boolean play(Deck draw_decks, ArrayList<ArrayList<Card>> enemy_melds);
-	//virtual void strategy();
+	/**
+	 Abstract class representing the Player drawing. Deprecated.
+	 @param draw_decks, Deck representing a Player's Deck.
+	 @return boolean representing if the Player should quit the Round or not.
+	 */
 	public abstract boolean draw(Deck draw_decks);
+	/**
+	 Abstract class representing the Player melding. Deprecated.
+	 @param enemy_melds, ArrayList of ArrayLists representing A player's melds
+	 */
 	public abstract void meld(ArrayList<ArrayList<Card>> enemy_melds);
+	/**
+	 Abstract class representing the Player discarding. Deprecated.
+	 @param draw_decks, Deck representing a Player's Deck.
+	 @param enemy_melds, ArrayList of ArrayLists representing A player's melds
+	 */
 	public abstract void discard(Deck draw_decks, ArrayList<ArrayList<Card>> enemy_melds);
+	/**
+	 Abstract class representing the Player printing it's type.
+	 */
 	public abstract void print_player_type();
+	/**
+	 Abstract class representing the Player choosing to go out. Deprecated.
+	 @return boolean representing if the Player chose to go out.
+	 */
 	public abstract boolean choose_to_go_out();
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: virtual String get_player_type() const = 0;
+	/**
+	 Abstract class representing the Player type returning.
+	 @return String representing the player type.
+	 */
 	public abstract String get_player_type();
+
+	/**
+	 Abstract class representing the Player's strategy. Deprecated.
+	 @param draw_decks, Deck representing a Player's Deck.
+	 @param enemy_melds, ArrayList of ArrayLists representing A player's melds
+	 */
 	public abstract void strategy(Deck draw_decks, ArrayList<ArrayList<Card>> enemy_melds);
 	/* *********************************************************************
 	Function Name: meld
@@ -649,6 +811,12 @@ public abstract class Player implements Serializable
 		//https://cplusplus.com/reference/iterator/back_inserter/
 		//https://stackoverflow.com/questions/52150939/cant-dereference-value-initialized-iterator
 	********************************************************************* */
+	/**
+	 Abstract class representing the CPU'S strategy and the advice to give to the Player.
+	 @param enemy_melds, ArrayList of ArrayLists representing A player's melds
+	 @param plr_type, a string representing the player's type.
+	 @return String representing the output made during this function.
+	 */
 	public final String strategy_meld(ArrayList<ArrayList<Card>> enemy_melds, String plr_type)
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1175,6 +1343,12 @@ public abstract class Player implements Serializable
 	Return Value: bool, representing if the game should end immeadiately if the Computer cannot draw.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Abstract class representing the CPU'S strategy and the advice to give to the Player about drawing.
+	 @param draw_decks, a Deck representing the Round's deck.
+	 @param plr_type, a string representing the player's type.
+	 @return String representing the output made during this function.
+	 */
 	public final String strategy_draw(Deck draw_decks, String plr_type)
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1330,6 +1504,13 @@ public abstract class Player implements Serializable
 	Return Value: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Abstract class representing the CPU'S strategy and the advice to give to the Player about discarding.
+	 @param draw_decks A Deck representing the Round's Deck.
+	 @param enemy_melds, ArrayList of ArrayLists representing A player's melds
+	 @param plr_type, a string representing the player's type.
+	 @return String representing the output made during this function.
+	 */
 	public final String strategy_discard(Deck draw_decks, ArrayList<ArrayList<Card>> enemy_melds, String plr_type)
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -1598,6 +1779,11 @@ public abstract class Player implements Serializable
 	Returns: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 A setter for has_decided_to_go_out data member.
+	 @param go_out_decision a bool representing what to set the data member has_decided_to_go_out as.
+	 @return String representing the output made during this function.
+	 */
 	public final void set_go_out_decision(boolean go_out_decision)
 	{
 		has_decided_to_go_out = go_out_decision;
@@ -1610,6 +1796,11 @@ public abstract class Player implements Serializable
 	Returns: bool, representing if the player has decided to go out
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 To return if the player has decided to go out.
+	 @return boolean representing if the player has decided to go out or not.
+	 */
 	public final boolean go_out()
 	{
 		boolean able_to_go_out = can_go_out();
@@ -1636,6 +1827,12 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_dangerous_amount_of_cards(STLVector<STLVector<Card>> enemy_melds) const
+
+	/**
+	 To gather the amount of how many cards, if discarded, will give the enemy a canasta.
+	 @param enemy_melds an Arraylist of Arraylist of Cards representing the enemy's melds.
+	 @return int, representing the amount of dangerous cards there are.
+	 */
 	public final int get_dangerous_amount_of_cards(ArrayList<ArrayList<Card>> enemy_melds)
 	{
 		int first_position = 0;
@@ -1654,9 +1851,13 @@ public abstract class Player implements Serializable
 		}
 		return amount_of_dangerous_cards;
 	}
-	
-	
-	
+
+
+	/**
+	 To gather the amount of how many cards, if discarded, will give the enemy a canasta.
+	 @param enemy_melds an Arraylist of Arraylist of Cards representing the enemy's melds.
+	 @return Arraylist of Card, representing the amount of dangerous cards there are.
+	 */
 	public ArrayList<Card> get_dangerous_card_list (ArrayList<ArrayList<Card>> enemy_melds) {
 		int first_position = 0;
 		Hand player_hand = get_player_hand();
@@ -1688,6 +1889,12 @@ public abstract class Player implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean is_dangerous_card(Card potential_danger_card, STLVector<STLVector<Card>> enemy_melds) const
+	/**
+	 To gather the amount of how many cards, if discarded, will give the enemy a canasta.
+	 @param  potential_danger_card, a Card which is to be checked if it is "dangerous", see above.
+	 @param enemy_melds an Arraylist of Arraylist of Cards representing the enemy's melds.
+	 @return bool, representing if the Card passed if discarded, will give the enemy a canasta.
+	 */
 	public final boolean is_dangerous_card(Card potential_danger_card, ArrayList<ArrayList<Card>> enemy_melds)
 	{
 		int first_pos = 0;
@@ -1701,7 +1908,5 @@ public abstract class Player implements Serializable
 		return false;
 	}
 
-	private int score;
-	private Hand player_hand = new Hand();
-	private boolean has_decided_to_go_out;
+
 }

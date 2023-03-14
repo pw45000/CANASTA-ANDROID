@@ -3,21 +3,12 @@ package com.example.myapplication;
 import java.util.*;
 import java.io.*;
 
-import android.content.Context;
-import android.content.Context.*;
-import android.content.res.AssetManager;
-/* ***********************************************************
- * Name:  Patrick Wierzbicki*
- * Project : Canasta C++ Project 1*
- * Class : CMPS-366-01*
- * Date : 9/28/22*
- *********************************************************** */
 
 /* ***********************************************************
  * Name:  Patrick Wierzbicki*
- * Project : Canasta C++ Project 1*
+ * Project : Canasta Project 3 *
  * Class : CMPS-366-01*
- * Date : 9/28/22*
+ * Date : 11/16/22*
  *********************************************************** */
 
 //C++ TO JAVA CONVERTER NOTE: Java has no need of forward class declarations:
@@ -44,6 +35,14 @@ import android.content.res.AssetManager;
 public class Round implements Closeable, Serializable
 {
 
+
+
+	private Deck stock_and_discard;
+	private int round_number;
+	private int next_player;
+	private ArrayList<Player> players;
+
+
 	/* *********************************************************************
 	Function Name: Round
 	Purpose: The default constructor for the Round class.
@@ -51,10 +50,17 @@ public class Round implements Closeable, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 The default constructor for the Round class.
+	 */
 	public Round()
 	{
 
 		next_player = 0;
+		stock_and_discard = new Deck();
+		players = new ArrayList<Player>();
+
 		round_number = 0;
 	}
 
@@ -68,15 +74,26 @@ public class Round implements Closeable, Serializable
 	Return Value: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 The non default constructor for the class, including a player list and round number from Game.
+	 @param players an Arraylist of Player representing the players in the Game.
+	 */
 	public Round(ArrayList<Player> players, int round_number)
 	{
 		this.players = new ArrayList<Player>(players);
 		this.round_number = round_number;
 		next_player = 0;
+		stock_and_discard = new Deck();
 	}
-
+	/**
+	 A non default constructor which creates a new round for the purposes of when the player chooses "play again."
+	 @param player_1_score an int which represents the score of player 1 from the previous round.
+	 @param player_2_score an int which represents the score of player 2 from the previous round.
+	 @param round_number an int which represents the round number from the previous round.
+	 */
 	public Round(int player_1_score, int player_2_score, int round_number) {
-		this.players = new ArrayList<Player>(players);
+		this.players = new ArrayList<Player>();
+		stock_and_discard = new Deck();
 		players.add(new Computer());
 		players.add(new Human());
 		players.get(0).set_player_score(player_1_score);
@@ -95,11 +112,13 @@ public class Round implements Closeable, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 A copy constructor for class Round.
+	 @param other_round a Round(final) that will be copied from.
+	 */
 	public Round(final Round other_round)
 	{
 		this.next_player = other_round.next_player;
-//C++ TO JAVA CONVERTER TODO TASK: The following line was determined to be a copy assignment (rather than a reference assignment) - this should be verified and a 'copyFrom' method should be created:
-//ORIGINAL LINE: this->stock_and_discard = other_round.stock_and_discard;
 		this.stock_and_discard = other_round.stock_and_discard;
 		this.players = new ArrayList<Player>(other_round.players);
 
@@ -114,8 +133,12 @@ public class Round implements Closeable, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 The Java equivalent of a destructor for the Round class.
+	 */
 	public final void close()
 	{
+		//inappropriately named: clears both stock AND discard pile.
 		stock_and_discard.clear_discard();
 	}
 
@@ -139,6 +162,13 @@ public class Round implements Closeable, Serializable
 	Assistance Received: I read up on random numbers at the following article:
 								https://stackoverflow.com/questions/59644856/measuring-time-to-generate-better-random-numbers-in-c
 	********************************************************************* */
+
+
+	/**
+	 Generates a random value between 0 and 1 to represent heads or tails and returns if the player chose that value.
+	 @param choice an integer which presents what the player chose.
+	 @return boolean that represents if the player chose the correct face of the coin.
+	 */
 	public final boolean coin_toss(int choice)
 	{
 //C++ TO JAVA CONVERTER TODO TASK: There is no equivalent to implicit typing in Java unless the Java 10 inferred typing option is selected:
@@ -174,151 +204,7 @@ public class Round implements Closeable, Serializable
 	}
 
 
-	/* *********************************************************************
-	Function Name: main_round
-	Purpose: To act as the main round gameplay loop.
-	Parameters: has_loaded_file, a boolean representing if a file has been loaded to start the round.
-	Algorithm:
-				 1. See if a file has been loaded or not. If so, start the main gameplay do while loop.
-				 2. If not, see if the scores are the same. If they are, do a coin toss.
-					 If not, whichever player with a higher score goes first.
-				 3. The do while loop will continue until the round is over or the player quits.
-				 4. In the do while loop, there is are 4 options a player can take:
-					 (this in of itself is a do while loop which is broken on save or the option to continue.
-					a) Save (which has the two options to save and continue or to save and quit)
-					b) Take the turn (which simply continues onward)
-					c) Quit the game, which breaks the loop and returns to main_game.
-					d) Ask for advice, which starts another do while loop, where the player can ask for help regarding the following:
-						i). Drawing
-						ii. Melding
-						iii.Discarding
-						iv.Exit
-					5. If the player continues onward, the round will decide who goes depending on the next player.
-					6. In a player's turn, they are called with their play function which passes the enemy melds.
-						Each turn, a player's transfer states are cleared, so the player can transfer wild cards once per turn.
-					7. This goes on until a player quits, at which point the scores are output and tallied.
-					8. At almost each of these steps, information regarding the round is output.
-	Local variables:
-		1. player1, a Player* that represents player 1.
-		2. player2, a Player* that represents player 2.
-		3. menu_choice, an int that represents the choice a player gives in a input based menu.
-	Return Value: bool that returns if a player quit or not.
-	Assistance Received: none
-	********************************************************************* */
-	public final boolean main_round(boolean has_loaded_file) throws FileNotFoundException
-	{
-//C++ TO JAVA CONVERTER TODO TASK: There is no equivalent to implicit typing in Java unless the Java 10 inferred typing option is selected:
-		Player player1 = players.get(0);
-//C++ TO JAVA CONVERTER TODO TASK: There is no equivalent to implicit typing in Java unless the Java 10 inferred typing option is selected:
-		Player player2 = players.get(1);
-		int menu_choice = 0;
-		boolean round_is_over = false;
 
-		if (has_loaded_file == false)
-		{
-			if (player1.get_score() == player2.get_score())
-			{
-				//the coin toss decides which player is going next.
-				//so, we'll need to set the result for it's return.
-				//set_next_player(coin_toss(1));
-			}
-
-			else
-			{
-				if (player1.get_score() > player2.get_score())
-				{
-					next_player = 1;
-				}
-				else
-				{
-					next_player = 2;
-				}
-			}
-
-
-			initial_draw();
-			sort_players_hands();
-		}
-		output_round_info();
-
-		do
-		{
-			do
-			{
-				menu_choice = pre_turn_menu();
-
-				switch (menu_choice)
-				{
-					case 1:
-					{
-						System.out.print("How would you like to save?");
-						System.out.print("\n");
-						System.out.print("1. save and continue");
-						System.out.print("\n");
-						System.out.print("2. save and quit");
-						System.out.print("\n");
-						int save_choice = validate_option_based_input(1, 2);
-						sort_players_hands();
-						save_round("Foo");
-						if (save_choice == 2)
-						{
-							return true;
-						}
-						break;
-					}
-					case 2:
-						continue;
-					case 3:
-						return true;
-					case 4:
-					{
-						int player_to_give_advice_pos = get_next_player() - 1;
-//C++ TO JAVA CONVERTER TODO TASK: There is no equivalent to implicit typing in Java unless the Java 10 inferred typing option is selected:
-						Player player_to_give_advice = players.get(player_to_give_advice_pos);
-//C++ TO JAVA CONVERTER TODO TASK: There is no equivalent to implicit typing in Java unless the Java 10 inferred typing option is selected:
-						Player enemy_player = (player_to_give_advice_pos == 0) ? players.get(1) : players.get(0);
-						Hand enemy_hand = enemy_player.get_player_hand();
-						ArrayList<ArrayList<Card>> enemy_meld = enemy_hand.get_meld();
-
-						player_to_give_advice.strategy(stock_and_discard, enemy_meld);
-
-						break;
-					}
-				}
-				//break if the option is to quit the game or to take the turn.
-			} while (menu_choice != 3 && menu_choice != 2);
-			output_round_info();
-
-			if (round_is_over == true)
-			{
-				break;
-			}
-
-
-			output_round_info();
-			// note that we subtract one as next_player is stored at starting at 1, not 0.
-			//this was originally going to be done to say it's easier to say "player 1 and player 2"
-			// but ended up being a terrible idea.
-			Player enemy = players.get(next_player % (players.size()));
-			Player current_player = players.get((next_player+1) % (players.size()));
-			Hand enemy_hand = enemy.get_player_hand();
-			ArrayList<ArrayList<Card>> enemy_meld = enemy_hand.get_meld();
-			round_is_over = current_player.play(stock_and_discard, enemy_meld);
-			player1.clear_transfer_states();
-			//we'll need to increment next player to pass the turn.
-			next_player = (next_player % (players.size()))+1;
-
-			output_round_info();
-		} while (round_is_over == false && menu_choice != 4);
-
-
-
-		//tally_score();
-		output_round_info();
-
-		return false;
-
-	}
 
 
 	/* *********************************************************************
@@ -334,6 +220,9 @@ public class Round implements Closeable, Serializable
 	Return Value: none.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Draws the first 15 cards for both players.
+	 */
 	public final void initial_draw()
 	{
 		//for each player, draw 15 cards from the stockpile.
@@ -364,13 +253,17 @@ public class Round implements Closeable, Serializable
 
 	/* *********************************************************************
 	Function Name: get_next_player
-	Purpose: Drawing the initial amount of cards.
+	Purpose: Gets the next player.
 	Parameters: none
 	Return Value: an int which returns the next player in the Round.
 	Assistance Received: none
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_next_player() const
+	/**
+	 Gets the next player in numeric form.
+	 @return int, which represents the next player in the round.
+	 */
 	public final int get_next_player()
 	{
 		return next_player;
@@ -379,11 +272,14 @@ public class Round implements Closeable, Serializable
 
 	/* *********************************************************************
 	Function Name: set_next_player
-	Purpose: Drawing the initial amount of cards.
+	Purpose: Selector for the next_player data member.
 	Parameters: next_player: an int which represents the next player
 	Return Value: an int which returns the next player in the Round.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Selector for the next_player data member.
+	 @param next_player, which represents the next player in the round.*/
 	public final void set_next_player(int next_player)
 	{
 		if (next_player == 1 || next_player == 2)
@@ -400,6 +296,9 @@ public class Round implements Closeable, Serializable
 	Return Value: an int which returns the next player in the Round.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Sorts each player's hand.
+	 */
 	public final void sort_players_hands()
 	{
 		for (int plr_pos = 0; plr_pos < players.size(); plr_pos++)
@@ -409,60 +308,6 @@ public class Round implements Closeable, Serializable
 	}
 
 
-	/* *********************************************************************
-	Function Name: pre_turn_menu
-	Purpose: Displays the pre turn menu.
-	Parameters: next_player: an int which represents the next player
-	Return Value: an int which returns the next player in the Round.
-	Algorithm:
-				 1. Receive the type of the next player.
-				 2. Depending on if the next player is human, a computer, or something else:
-					a) If it's human, display a menu with 4 options (advice included) and validate input.
-					b) If it's a computer, display a menu with 3 options (advice excluded) and validate input.
-					c) If it's neither, return a number representing an error.
-	Local variables:
-						next_player: an int representing the numeric value of the next player.
-						next_player_type: a string representing the next player's type, i.e. "Human" or "Computer", typically.
-						error_number: an int representing an error code, -999 in this case.
-	Assistance Received: none
-	********************************************************************* */
-	public final int pre_turn_menu()
-	{
-		int next_player = get_next_player() - 1;
-		String next_player_type = players.get(next_player).get_player_type();
-		int error_number = -999;
-		if (next_player_type.equals("Human"))
-		{
-
-			System.out.print("1. Save the game");
-			System.out.print("\n");
-			System.out.print("2. Take the turn");
-			System.out.print("\n");
-			System.out.print("3. Quit the game");
-			System.out.print("\n");
-			System.out.print("4. Advice (ask for help)");
-			System.out.print("\n");
-			return validate_option_based_input(1, 4);
-		}
-
-		else if (next_player_type.equals("Computer"))
-		{
-			System.out.print("1. Save the game");
-			System.out.print("\n");
-			System.out.print("2. Take the turn");
-			System.out.print("\n");
-			System.out.print("3. Quit the game");
-			System.out.print("\n");
-			return validate_option_based_input(1, 3);
-		}
-		else
-		{
-			System.out.print("Unknown Player type! Can't display pre turn menu!");
-			System.out.print("\n");
-			return error_number;
-		}
-
-	}
 
 
 	/* *********************************************************************
@@ -472,6 +317,12 @@ public class Round implements Closeable, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 Tallies the score for a chosen player in the current round and returns it.
+	 @param player_pos an integer representing which player's score the function should return.
+	 @return an integer representing a chosen player's total round score.
+	 */
 	public final int tally_score(int player_pos)
 	{
 		int player_1_pos = 0;
@@ -509,6 +360,11 @@ public class Round implements Closeable, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 Sets the round number.
+	 @param round_number an int representing what the next round number will be.
+	 */
 	public final void set_round_number(int round_number)
 	{
 		if (round_number > 0)
@@ -521,9 +377,14 @@ public class Round implements Closeable, Serializable
 	Function Name: get_players
 	Purpose: To retrieve the players in a round.
 	Parameters: none
-	Return Value: a vector of player pointers representing each player, particularly a pointer to avoid object slicing.
+	Return Value: an arraylist of object Player representing each player.
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 Retrieves the players in a round.
+	 @return an arraylist of object Player representing each player.
+	 */
 	public final ArrayList<Player> get_players()
 	{
 		return players;
@@ -545,6 +406,10 @@ public class Round implements Closeable, Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: void output_round_info() const
+	/**
+	 Outputs the round information in an output form and returns a String representing this output.
+	 @return String, representing the round information.
+	 */
 	public final String output_round_info()
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -644,6 +509,11 @@ public class Round implements Closeable, Serializable
 						 lines_to_parse: a vector of strings representing all the extracted strings from the file.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Loads the game/round, given some deserialized lines.
+	 @param lines_to_parse, an ArrayList of Strings representing the given lines.
+	 @return bool, representing if the file that has been loaded has been loaded successfully or not.
+	 */
 	public final boolean load_game(ArrayList<String> lines_to_parse) throws IOException
 	{
 		boolean load_success = true;
@@ -723,6 +593,12 @@ public class Round implements Closeable, Serializable
 	Assistance Received: Since there still might be some information prior to the string being extracted, I used
 							   this resource to assist in that: https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
 	********************************************************************* */
+
+	/**
+	 To load a round number from a saved file the user inputted.
+	 @param round_string representing a string to parse containing the round number.
+	 @return bool, representing if loading the round number was successful or not.
+	 */
 	public final boolean load_round_number(String round_string)
 	{
 
@@ -759,6 +635,11 @@ public class Round implements Closeable, Serializable
 	Return Value: bool, representing if loading the player type was successful or not.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To load the type of player from a saved file the user inputted, by adding to the players Arraylist.
+	 @param player_string a string representing the string to parse for the type of player.
+	 @return representing if loading the player type was successful or not.
+	 */
 	public final boolean load_player(String player_string)
 	{
 		if (player_string.equals("Human:"))
@@ -791,6 +672,12 @@ public class Round implements Closeable, Serializable
 	Assistance Received: Since there still might be some information prior to the string being extracted, I used
 								this resource to assist in that: https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
 	********************************************************************* */
+	/**
+	 To load a player's score from a saved file the user inputted.
+	 @param score_string representing a string to parse containing the player's score.
+	 @param player representing the player's position in players to assign the score to.
+	 @return representing if loading the player's score was successful or not.
+	 */
 	public final boolean load_player_score(int player, String score_string)
 	{
 		//https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
@@ -835,6 +722,11 @@ public class Round implements Closeable, Serializable
 				 rank_list and suite_list, strings which both represent the list of all valid chars for ranks and suits respectively.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To validate if a passed string is a valid Card that can be loaded.
+	 @param card_string a string representing a potential Card that is to be validated as a card.
+	 @return bool, representing if card_string is a valid Card.
+	 */
 	public final boolean string_is_card(String card_string)
 	{
 		if (card_string.length() != 2)
@@ -881,13 +773,20 @@ public class Round implements Closeable, Serializable
 				  4. If all strings in the vector have been loaded, return true.
 	Local variables:
 				  hand: a string representing the variable hand_string minus an extra whitespace.
-				  converted_hand: the vector of Cards that will be the player's hand from the loaded file.
+				  converted_hand: the arraylist of Cards that will be the player's hand from the loaded file.
 				  hand_extractor: the isstringstream that will parse through the hand_string variable.
 				  card_string: a string extracted from the hand_extractor which represents a particular Card.
 	Return Value: bool, representing if loading the player's hand was successful or not.
 	Assistance Received: Since there still might be some information prior to the string being extracted, I used
 								this resource to assist in that: https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
 	********************************************************************* */
+
+	/**
+	 To load a player's hand from a saved file that has been inputted.
+	 @param player  int representing the player's position in players to assign the score to.
+	 @param hand_string, String representing a string to parse the player's hand
+	 @return bool, representing if loading the player's hand was successful or not.
+	 */
 	public final boolean load_hand(int player, String hand_string)
 	{
 		hand_string = hand_string.substring(hand_string.indexOf(":") + 2);
@@ -945,6 +844,12 @@ public class Round implements Closeable, Serializable
 	Assistance Received: Since there still might be some information prior to the string being extracted, I used
 								this resource to assist in that: https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
 	********************************************************************* */
+	/**
+	 To load a player's melds from a saved file that has been inputted.
+	 @param player representing the player's position in players to assign the score to.
+	 @param pre_meld_string, representing a string to parse the player's hand
+	 @return bool, representing if loading the player's melds was successful or not.
+	 */
 	public final boolean load_meld(int player, String pre_meld_string)
 	{
 		pre_meld_string = pre_meld_string.substring(pre_meld_string.indexOf(":") + 2);
@@ -1025,6 +930,11 @@ public class Round implements Closeable, Serializable
 	Assistance Received: Since there still might be some information prior to the string being extracted, I used
 								this resource to assist in that: https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
 	********************************************************************* */
+	/**
+	 To load a Round's stock pile from a saved file that has been inputted.
+	 @param stock_string  representing a string to parse the Round's stock pile.
+	 @return bool, representing if loading the Round's stock pile was successful or not.
+	 */
 	public final boolean load_stock(String stock_string)
 	{
 		stock_string = stock_string.substring(stock_string.indexOf(":") + 2);
@@ -1075,6 +985,11 @@ public class Round implements Closeable, Serializable
 	Assistance Received: Since there still might be some information prior to the string being extracted, I used
 								this resource to assist in that: https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
 	********************************************************************* */
+	/**
+	 To load a Round's discard pile from a saved file that has been inputted.
+	 @param discard_string  representing a string to parse the Round's discard pile.
+	 @return bool, representing if loading the Round's stock pile was successful or not.
+	 */
 	public final boolean load_discard(String discard_string)
 	{
 		discard_string = discard_string.substring(discard_string.indexOf(":") + 2);
@@ -1118,6 +1033,12 @@ public class Round implements Closeable, Serializable
 	Assistance Received: Since there still might be some information prior to the string being extracted, I used
 								this resource to assist in that: https://stackoverflow.com/questions/28163723/c-how-to-get-substring-after-a-character
 	********************************************************************* */
+
+	/**
+	 To load a Round's next player from a saved file the user inputted.
+	 @param next_player_str  representing a string to parse containing the next player.
+	 @return bool, representing if loading the next player was successful or not.
+	 */
 	public final boolean load_next_player(String next_player_str)
 	{
 
@@ -1163,6 +1084,10 @@ public class Round implements Closeable, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 A setter for the Round's stock pile.
+	 @param stock_pile representing an Arraylist of Card for the data member stock_pile to be set as.
+	 */
 	public final void set_stock_pile(ArrayList<Card> stock_pile)
 	{
 		stock_and_discard.set_stock_pile(new ArrayList<Card>(stock_pile));
@@ -1176,202 +1101,35 @@ public class Round implements Closeable, Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 A setter for the Round's discard pile.
+	 @param discard_pile representing an Arraylist of Card for the data member discard_pile to be set as.
+	 */
 	public final void set_discard_pile(ArrayList<Card> discard_pile)
 	{
 		stock_and_discard.set_discard_pile(new ArrayList<Card>(discard_pile));
 	}
 
-	/* *********************************************************************
-	Function Name: save_round
-	Purpose: Serializes the information of the current round and saves it to a file.
-	Parameters:
-				  discard_pile, representing a vector of Cards for the data member to be set as.
-	Return Value: none
-	Assistance Received: I primarily looked into how to reroute output buffers to files.
-	https://stackoverflow.com/questions/4810516/c-redirecting-stdout
-	********************************************************************* */
-	public final void save_round(String file_name) throws FileNotFoundException
-	{
-		System.out.print("What would you like to save your file as? Say quit to cancel saving.");
-		System.out.print("\n");
 
-		if (file_name.equals("quit"))
-		{
-			return;
-		}
-
-		file_name = new Scanner(System.in).nextLine();
-
-		PrintStream file_output = new PrintStream(new File(file_name));
-		PrintStream console = System.out; //save the old buffer
-
-		System.setOut(file_output);//reroute output to a file with a  buffer
-		output_round_info();
-		System.setOut(console);//reset the buffer to standard output
-
-	}
-
-
-
-
-
-	//C++ TO JAVA CONVERTER TODO TASK: The implementation of the following method could not be found:
-	//int validate_option_based_input(int lower_bound, int upper_bound);
-	//C++ TO JAVA CONVERTER TODO TASK: The implementation of the following method could not be found:
-	//int validate_option_based_input(int lower_bound, int upper_bound, boolean special_option);
-
-
-
-/* *********************************************************************
-Function Name: validate_option_based_input
-Purpose: Validating option based input in a lower and upper bound.
-Parameters:
-			  lower_bound, an int that represents the lower bound of acceptable input.
-			  upper_bound, an int that represents the upper bound of acceptable input.
-Algorithm:
-			 1). Use a do-while loop to simulate continous input which will break when input is valid.
-			     Within this input, prior to input,
-				  the cin buffer is cleared and all prior input(including newlines) is ignored.
-			 2). There are cases in which the input will always be false:
-						a) The input is not within upper or lower bounds.
-						b) The input is not numeric.
-			 3). If the input is none of these cases, then convert the string into an integer and store it, and set the input to be valid.
-			 4). Return the valid inputted choice.
-
-
-Local variables:
-
-
-Return Value: none
-Assistance Received: none
-********************************************************************* */
-
-
-	//we'll need to have this as out of class function so as to avoid dependancy on the Game class
-	//when we call this function in the round Class.
-	public static int validate_option_based_input(int lower_bound, int upper_bound)
-	{
-		String input;
-		boolean is_valid = false;
-		int converted_option = 0;
-		do
-		{
-
-			Scanner scan = new Scanner(System.in);
-			input = scan.nextLine();
-			input = input.replaceAll(" ","");
-
-
-			if (input.matches("[0-9]+"))
-			{
-				converted_option = Integer.parseInt(input);
-
-				if (converted_option >= lower_bound && converted_option <= upper_bound)
-				{
-					is_valid = true;
-				}
-				else
-				{
-					System.out.print("Input Error: selected number is not an option.");
-					System.out.print("\n");
-				}
-			}
-			else
-			{
-				System.out.print("Input Error: inputted string is not numeric.");
-				System.out.print("\n");
-			}
-
-		} while (is_valid != true);
-
-		return converted_option;
-	}
-
-/* *********************************************************************
-Function Name: validate_option_based_input
-Purpose: Validating option based input in a lower and upper bound.
-Parameters:
-			  lower_bound, an int that represents the lower bound of acceptable input.
-			  upper_bound, an int that represents the upper bound of acceptable input.
-			  special_option, a bool that tells if the function should accept -1 as an acceptable input.
-Algorithm:
-			 1). Use a do-while loop to simulate continous input which will break when input is valid.
-				  Within this input, prior to input,
-				  the cin buffer is cleared and all prior input(including newlines) is ignored.
-			 2). There are cases in which the input will always be false:
-						a) The input is not within upper or lower bounds.
-						b) The input is not numeric.
-			 3). If the input is none of these cases or is -1,
-			 then convert the string into an integer and store it, and set the input to be valid.
-			 4). Return the valid inputted choice.
-
-
-Local variables:
-
-
-Return Value: none
-Assistance Received: Some parts of the input validation came from past projects of mine,
-such as the VC8000 computer, https://github.com/pw45000/VC-8000.
-********************************************************************* */
-
-
-	public static int validate_option_based_input(int lower_bound, int upper_bound, boolean special_option)
-	{
-		String input;
-		boolean is_valid = false;
-		int converted_option = 0;
-		do
-		{
-			Scanner scan = new Scanner(System.in);
-			input = scan.nextLine();
-			input = input.replaceAll(" ","");
-
-			if (input.equals("-1"))
-			{
-				return -1;
-			}
-
-
-			if (input.matches("[0-9]+"))
-			{
-				converted_option = Integer.parseInt(input);
-
-				if (converted_option >= lower_bound && converted_option <= upper_bound)
-				{
-					is_valid = true;
-				}
-				else
-				{
-					System.out.print("Input Error: selected number is not an option.");
-					System.out.print("\n");
-				}
-			}
-			else
-			{
-				System.out.print("Input Error: inputted string is not numeric.");
-				System.out.print("\n");
-			}
-
-		} while (is_valid != true);
-
-		return converted_option;
-	}
-
+	/**
+	 Getter for the round number.
+	 @return round_number, an int representing the round number.
+	 */
 	int get_round_num() {
 		return round_number;
 	}
 
+	/**
+	 Getter for the round's Deck.
+	 @return round_number, a Deck representing the round's Deck class.
+	 */
 	Deck get_deck () {
 		return stock_and_discard;
 	}
-	Deck get_deck_safe () {
-		return new Deck(stock_and_discard);
-	}
 
-	private Deck stock_and_discard = new Deck();
-	private int round_number;
-	private int next_player;
-	private ArrayList<Player> players = new ArrayList<Player>();
+
+
 }
 
 

@@ -6,18 +6,11 @@ import java.io.Serializable;
 import java.util.*;
 
 /* ***********************************************************
-* Name:  Patrick Wierzbicki*
-* Project : Canasta C++ Project 1*
-* Class : CMPS-366-01*
-* Date : 9/28/22*
-*********************************************************** */
-
-/* ***********************************************************
-* Name:  Patrick Wierzbicki*
-* Project : Canasta C++ Project 1*
-* Class : CMPS-366-01*
-* Date : 9/28/22*
-*********************************************************** */
+ * Name:  Patrick Wierzbicki*
+ * Project : Canasta Project 3 *
+ * Class : CMPS-366-01*
+ * Date : 11/16/22*
+ *********************************************************** */
 
 
 //To extract a card, the iterator looks verbose. 
@@ -25,6 +18,9 @@ import java.util.*;
 
 public class Hand implements Serializable
 {
+
+	private ArrayList<ArrayList<Card>> meld_container = new ArrayList<ArrayList<Card>>();
+	private ArrayList<Card> hand_container = new ArrayList<Card>();
 
 	/* *********************************************************************
 	Function Name: Hand
@@ -34,6 +30,9 @@ public class Hand implements Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 The default constructor of the Hand Class.
+	 */
 	public Hand()
 	{
 		hand_container.ensureCapacity(15);
@@ -47,12 +46,20 @@ public class Hand implements Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 A constructor such that it initializes the hand container for the Hand class.
+	 @param debug_hand an Arraylist of Card that represents the hand container to set as.
+	 */
 	public Hand(ArrayList<Card> debug_hand)
 	{
 		hand_container = new ArrayList<Card>(debug_hand);
 	}
 
-
+	/**
+	 A constructor that initalizes both the player's hand and melds.
+	 @param player_hand  A hand that represents the player's hand and melds.
+	 */
 	public Hand(Hand player_hand) {
 		this.hand_container = new ArrayList <Card>(player_hand.get_hand_container());
 		this.meld_container = new ArrayList<ArrayList<Card>>(player_hand.get_meld());
@@ -87,6 +94,13 @@ public class Hand implements Serializable
 	Return Value: bool, returning if the operation is successful or not.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Creates a meld from the hand, removing three hards from the hand and adding them to melds.
+	 @param first a Card which is the first card passed.
+	 @param second a Card which is the second card passed.
+	 @param third a Card which is the third Card passed.
+	 @return String, representing the output printed out during this function.
+	 */
 	public final String create_meld(Card first, Card second, Card third)
 	{
 		//while it might be viewed as wasteful to make another meld, it'll come in handy
@@ -242,7 +256,11 @@ public class Hand implements Serializable
 	Return Value: bool that represents if the operation was successful or not.
 	Assistance Received: none
 	********************************************************************* */
-
+	/**
+	 Creates a meld of a red three. Verifies the card passed is a red three.
+	 @param red_three a Card that represents a red three.
+	 @return bool that represents if the operation was successful or not.
+	 */
 	public final boolean create_meld(Card red_three)
 	{
 		if (red_three.isSpecial() && (red_three.get_card_suit() == 'H' || red_three.get_card_suit() == 'D'))
@@ -279,6 +297,12 @@ public class Hand implements Serializable
 	Return Value: bool, returning if the operation is successful or not.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To add a card to a pre-existing meld.
+	 @param addition: a Card that is the selected card to be added to a meld.
+	 @param meld_number: an int which represents the position of which meld to add onto.
+	 @return bool, returning if the operation is successful or not.
+	 */
 	public final String lay_off(Card addition, int meld_number)
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -400,6 +424,13 @@ public class Hand implements Serializable
 	Return Value: bool, returning if the operation is successful or not.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 To transfer a card to a prexisting meld.
+	 @transfer: a Card that is the selected card to be transferred.
+	 @wild_origin: an int representing the position of which meld to be transferred from.
+	 @meld_target: an int representing the position of which meld to transfer to.
+	 @return String, representing the output produced by this function.
+	 */
 	public final String transfer_wild_card(Card transfer, int wild_origin, int meld_target)
 	{
 		//ArrayList<Card> wild_origin_vector = meld_container.get(wild_origin);
@@ -517,6 +548,11 @@ public class Hand implements Serializable
 	Return Value: bool that represents if the card was found in the hand and erased or not.
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Removes a card from the hand.
+	 @param discarded_card a Card that represents the card to be discarded
+	 @return bool that represents if the card was found in the hand and erased or not.
+	 */
 	public final boolean remove_from_hand(Card discarded_card)
 	{
 		int discard_itr = hand_container.indexOf(discarded_card);
@@ -545,6 +581,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean is_canasta(int meld_number) const
+	/**
+	 Checks if a meld is a canasta.
+	 @param meld_number an int representing the position of a meld.
+	 @return  bool that represents if the meld at position meld_number is a canasta.
+	 */
 	public final boolean is_canasta(int meld_number)
 	{
 		if (meld_container.size() < meld_number)
@@ -571,6 +612,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean is_not_duplicate_meld(char rank) const
+	/**
+	 Checks if there already is a meld of a rank/face.
+	 @param rank a character representing the face of a card to be checked.
+	 @return bool that represents if the rank is a duplicate meld or not.
+	 */
 	public final boolean is_not_duplicate_meld(char rank)
 	{
 		int first_pos = 0;
@@ -595,6 +641,10 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean hand_empty() const
+	/**
+	 Checks if the hand is empty.
+	 @return bool that represents if hand is empty or not.
+	 */
 	public final boolean hand_empty()
 	{
 		boolean hand_is_empty = (hand_container.size() == 0) ? true : false;
@@ -611,6 +661,10 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean has_canasta() const
+	/**
+	 Checks if in the hand, there is a canasta.
+	 @return bool that represents if hand has a canasta or not.
+	 */
 	public final boolean has_canasta()
 	{
 		for (int meld_pos = 0; meld_pos < meld_container.size(); meld_pos++)
@@ -634,6 +688,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean meld_exits_already(Card card_to_search) const
+	/**
+	 Check if a meld of the given card's face exists already.
+	 @param card_to_search, a Card from which face will be compared against all other melds to see if there are duplicates.
+	 @return  bool saying that a meld exists already or doesn't.
+	 */
 	public final boolean meld_exits_already(Card card_to_search)
 	{
 		for (int meld_pos = 0; meld_pos < meld_container.size(); meld_pos++)
@@ -667,6 +726,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean is_meldable_with_melds(Card passed_card) const
+	/**
+	 Checks if the top of the discard is meldable with the current Player's melds.
+	 @param passed_card: a Card that represents the Card to check
+	 @return bool that represents if the top of the discard is meldable with other melds.
+	 */
 	public final boolean is_meldable_with_melds(Card passed_card)
 	{
 		//boolean can_meld = false;
@@ -725,6 +789,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: boolean is_meldable(Card passed_card) const
+	/**
+	 Checks if the top of the discard is meldable with the player's hand.
+	 @param passed_card: a Card that is to be checked if it can be melded.
+	 @return bool that represents if the top of the discard can be melded with the hand.
+	 */
 	public final boolean is_meldable(Card passed_card)
 	{
 		int compatible_cards = 0;
@@ -799,6 +868,11 @@ public class Hand implements Serializable
 	Return Value: int that represents the total score in the given meld..
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Calculates the total points in each meld.
+	 @param  meld_number: an int which represents the position of the meld to calculate points from.
+	 @return int that represents the total score in the given meld..
+	 */
 	public final int calculate_meld_points(int meld_number)
 	{
 		int meld_points = 0;
@@ -820,6 +894,9 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: void print_hand() const
+	/**
+		Prints the hand container.
+	 */
 	public final void print_hand()
 	{
 		for (Card hand_card : hand_container)
@@ -840,6 +917,9 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: void print_melds() const
+	/**
+	 Prints the meld container.
+	 */
 	public final void print_melds()
 	{
 		for (int meld = 0; meld < meld_container.size(); meld++)
@@ -864,6 +944,10 @@ public class Hand implements Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Adds a card to the hand.
+	 @paramcard_to_add: A card which will be added to hand.
+	 */
 	public final void add_to_hand(Card card_to_add)
 	{
 		hand_container.add(card_to_add);
@@ -876,6 +960,11 @@ public class Hand implements Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+
+	/**
+	 Adds an overloaded version of a function which adds several cards to the hand.
+	 @param cards_to_add: a vector of Cards to be added to the hand.
+	 */
 	public final void add_to_hand(ArrayList<Card> cards_to_add)
 	{
 		for (int card_pos = 0; card_pos < cards_to_add.size();card_pos++)
@@ -892,6 +981,9 @@ public class Hand implements Serializable
 	Return Value: none
 	Assistance Received: none
 	********************************************************************* */
+	/**
+	 Removes all red three from the hand and melds them.
+	 */
 	public final void purge_red_threes()
 	{
 		for (int card_pos = 0; card_pos < hand_container.size(); card_pos++)
@@ -915,6 +1007,10 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_size_of_hand() const
+	/**
+	 Retrieves the size of the hand container.
+	 @return int representing the size of the hand container.
+	 */
 	public final int get_size_of_hand()
 	{
 		return hand_container.size();
@@ -930,6 +1026,10 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_size_of_meld() const
+	/**
+	 Retrieves the size of the meld container.
+	 @return int representing the size of the meld container.
+	 */
 	public final int get_size_of_meld()
 	{
 		return meld_container.size();
@@ -944,6 +1044,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_score_from_meld(int meld_pos) const
+	/**
+	 Get the score from a single meld.
+	 @param meld_pos, representing the meld at which position to total the score.
+	 @return int representing the total score of a meld.
+	 */
 	public final int get_score_from_meld(int meld_pos)
 	{
 		int score = 0;
@@ -973,6 +1078,12 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int get_total_score(boolean has_gone_out) const
+
+	/**
+	 Retrieves the total score for hands and melds.
+	 @param  has_gone_out, a bool representing if the current player has gone out.
+	 @return an int representing the total score.
+	 */
 	public final int get_total_score(boolean has_gone_out)
 	{
 		int hand_score_subtraction = 0;
@@ -1019,6 +1130,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: int size_of_non_spec_melds() const
+
+	/**
+	 size_of_non_spec_melds
+	 @return int representing the size of the non special melds in the meld container.
+	 */
 	public final int size_of_non_spec_melds()
 	{
 		int non_spec_meld_counter = 0;
@@ -1043,6 +1159,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: STLVector<Card> get_wild_cards(int meld_pos) const
+	/**
+	 Retrieves all wild cards from a meld.
+	 @param meld_pos  an integer representing the position of the meld from which to be extracted.
+	 @return  ArrayList of Cards representing all the wild cards in a given meld.
+	 */
 	public final ArrayList<Card> get_wild_cards(int meld_pos)
 	{
 		ArrayList<Card> extraction_meld = meld_container.get(meld_pos);
@@ -1067,6 +1188,11 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: STLVector<Card> get_wild_cards_ignore_transfer(int meld_pos) const
+	/**
+	 Retrieves all wild cards from a meld, except it ignores if the wild cards have been transferred.
+	 @param meld_pos: an integer representing the position of the meld from which to be extracted.
+	 @return ArrayList of Cards representing all the wild cards in a given meld.
+	 */
 	public final ArrayList<Card> get_wild_cards_ignore_transfer(int meld_pos)
 	{
 		ArrayList<Card> extraction_meld = meld_container.get(meld_pos);
@@ -1103,6 +1229,10 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: STLVector<Card> get_wild_cards_from_hand() const
+	/**
+	 Retrieves all wild cards from a the hand.
+	 vector of Cards representing all the wild cards in the hand container.
+	 */
 	public final ArrayList<Card> get_wild_cards_from_hand()
 	{
 		ArrayList<Card> wild_vector = new ArrayList<Card>();
@@ -1118,21 +1248,6 @@ public class Hand implements Serializable
 
 	}
 
-	public final ArrayList<Card> get_wild_cards_from_hand_unsafe()
-	{
-		ArrayList<Card> wild_vector = new ArrayList<Card>();
-
-		for (int card_pos = 0; card_pos < hand_container.size(); card_pos++)
-		{
-			if (hand_container.get(card_pos).isWild() && hand_container.get(card_pos).get_has_transferred() == false)
-			{
-				wild_vector.add(hand_container.get(card_pos));
-			}
-		}
-		return wild_vector;
-
-	}
-
 
 
 	/* *********************************************************************
@@ -1144,6 +1259,10 @@ public class Hand implements Serializable
 	********************************************************************* */
 //C++ TO JAVA CONVERTER WARNING: 'const' methods are not available in Java:
 //ORIGINAL LINE: STLVector<STLVector<Card>> get_meld() const
+	/**
+	 Retrieves Retrieves the meld container.
+	 @return Arraylist of Arraylist of cards, representing the meld container.
+	 */
 	public final ArrayList<ArrayList<Card>> get_meld()
 	{
 		ArrayList<ArrayList<Card>> tmp_meld_container = new ArrayList<ArrayList<Card>>();
@@ -1331,6 +1450,5 @@ public class Hand implements Serializable
 	}
 
 
-	private ArrayList<ArrayList<Card>> meld_container = new ArrayList<ArrayList<Card>>();
-	private ArrayList<Card> hand_container = new ArrayList<Card>();
+
 }

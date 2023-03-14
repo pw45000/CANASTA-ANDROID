@@ -1,17 +1,15 @@
 package com.example.myapplication;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
+
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,90 +18,95 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintStream;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Locale;
-
+/* ***********************************************************
+ * Name:  Patrick Wierzbicki*
+ * Project : Canasta Project 3 *
+ * Class : CMPS-366-01*
+ * Date : 11/16/22*
+ *********************************************************** */
 
 public class main_board extends AppCompatActivity {
-        TextView score_text_computer_num;
-        TextView score_text_human_num;
-        TextView round_number_text;
-        TextView instruction_text;
-        TextView player_turn_text;
 
-        Button advice_button;
-        Button log_button;
+        private TextView score_text_computer_num;
+        private TextView score_text_human_num;
+        private TextView round_number_text;
+        private TextView instruction_text;
+        private TextView player_turn_text;
 
-        Button continue_button;
-        Button save_button;
-        Button quit_button;
+        private Button advice_button;
+        private Button log_button;
 
-        Button create_meld_button;
-        Button add_to_meld_button;
-        Button transfer_cards_button;
-        Button cancel_operation_button;
-        Button end_meld_phase;
+        private Button continue_button;
+        private Button save_button;
+        private Button quit_button;
 
-        HorizontalScrollView human_melds;
-        HorizontalScrollView computer_melds;
-        HorizontalScrollView human_hand;
-        HorizontalScrollView computer_hand;
+        private Button create_meld_button;
+        private Button add_to_meld_button;
+        private Button transfer_cards_button;
+        private Button cancel_operation_button;
+        private Button end_meld_phase;
 
-        LinearLayout human_melds_lin;
-        LinearLayout computer_melds_lin;
-        LinearLayout human_hand_lin;
-        LinearLayout computer_hand_lin;
+        private HorizontalScrollView human_melds;
+        private HorizontalScrollView computer_melds;
+        private HorizontalScrollView human_hand;
+        private HorizontalScrollView computer_hand;
 
-        ImageView discard_pile_image;
-        ImageView stock_pile_image;
+        private LinearLayout human_melds_lin;
+        private LinearLayout computer_melds_lin;
+        private LinearLayout human_hand_lin;
+        private LinearLayout computer_hand_lin;
 
-        ConstraintLayout parent_board;
-        ConstraintLayout pop_up;
-        ConstraintLayout main_game_board;
+        private ImageView discard_pile_image;
+        private ImageView stock_pile_image;
 
-        TextView pop_up_text;
-        TextView pop_up_advice;
-        TextView pop_up_error;
-        TextView pop_up_title;
-        TextView pop_up_log;
-        TextView pop_up_info;
-        Button pop_up_dismiss;
-        Button go_out_button;
+        private ConstraintLayout parent_board;
+        private ConstraintLayout pop_up;
+        private ConstraintLayout main_game_board;
 
-        ConstraintLayout save_game_display;
-        Button save_game_file_button;
-        EditText save_game_input;
+        private TextView pop_up_text;
+        private TextView pop_up_advice;
+        private TextView pop_up_error;
+        private TextView pop_up_title;
+        private TextView pop_up_log;
+        private TextView pop_up_info;
+        private Button pop_up_dismiss;
+        private Button go_out_button;
 
-        EditText save_file_input;
-        TextView save_file_prompt;
-        TextView meld_hint;
+        private ConstraintLayout save_game_display;
+        private Button save_game_file_button;
+        private EditText save_game_input;
+
+        private EditText save_file_input;
+        private TextView save_file_prompt;
+        private TextView meld_hint;
 
 
-        String phase ="none";
-        Round model_round;
-        ArrayList<Card> potential_meld = new ArrayList<Card>();
-        ArrayList<Integer> potential_meld_pos = new ArrayList<Integer>();
-        String operation = "none";
-        int transfer_donor_meld_pos;
-        int transfer_receiver_meld_pos;
-        int add_onto_pos;
+        private String phase ="none";
+        private Round model_round;
+        private ArrayList<Card> potential_meld = new ArrayList<Card>();
+        private ArrayList<Integer> potential_meld_pos = new ArrayList<Integer>();
+        private String operation = "none";
+        private int transfer_donor_meld_pos;
+        private int transfer_receiver_meld_pos;
+        private int add_onto_pos;
 
 
 
     @Override
+    /**
+     Creates the Activity.
+     @param savedInstanceState Bundle, from which the Activity will be made with.
+     */
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.canasta_board);
@@ -185,6 +188,9 @@ public class main_board extends AppCompatActivity {
 
 
     }
+    /**
+     Renders the game board.
+     */
     void update_views() {
         Deck deck_model = model_round.get_deck();
         boolean stock_is_empty = deck_model.stock_is_empty();
@@ -264,6 +270,10 @@ public class main_board extends AppCompatActivity {
 
     }
 
+    /**
+     Set the visibility of the pre turn menu.
+     @param option boolean representing if the menu should be visible or not
+     */
     void set_pre_turn_menu_visibility(boolean option) {
         if (option) {
             save_button.setVisibility(View.VISIBLE);
@@ -278,6 +288,10 @@ public class main_board extends AppCompatActivity {
         }
     }
 
+    /**
+     Sets delegates a function depending on when the click button was called.
+     @param view, View from which the function was called when clicked.
+     */
     void choose_continue_type(View view) {
         if (model_round.get_next_player()==2)
             human_play(view);
@@ -286,6 +300,10 @@ public class main_board extends AppCompatActivity {
         }
     }
 
+    /**
+     Display the internals of a meld.
+     @param view, View from which the button was clicked from.
+     */
     void see_meld_internals(View view) {
         ImageView card_view = (ImageView) view;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -318,7 +336,10 @@ public class main_board extends AppCompatActivity {
 
 
     }
-
+    /**
+     Display the internals of a meld, but for the computer.
+     @param view, View from which the button was clicked from.
+     */
     void see_meld_internals_computer(View view) {
         ImageView card_view = (ImageView) view;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -356,7 +377,10 @@ public class main_board extends AppCompatActivity {
 
 
 
-
+    /**
+     Prompt the player to go out or not.
+     @param view, View from which the button was clicked from.
+     */
     void prompt_go_out(View view) {
         main_game_board.setVisibility(View.INVISIBLE);
         pop_up.setVisibility(View.VISIBLE);
@@ -371,7 +395,10 @@ public class main_board extends AppCompatActivity {
         pop_up_title.setText("Go out?");
         go_out_button.setVisibility(View.VISIBLE);
     }
-
+    /**
+     Ends the game and goes to the results screen.
+     @param view, View passed from earlier function necessary to call the function.
+     */
     void end_game(View view) {
         ArrayList<Player> players = model_round.get_players();
         Computer comp_plr = (Computer) players.get(0);
@@ -391,6 +418,10 @@ public class main_board extends AppCompatActivity {
         finish();
     }
 
+    /**
+     Shifts the internal state of the model to say the Human went out.
+     @param view, View from which was called from an earlier function when a button was clicked.
+     */
     void player_go_out(View view) {
         update_log("Player 2 has decided to end the game by going out.");
         model_round.get_players().get(1).set_go_out_decision(true);
@@ -398,7 +429,9 @@ public class main_board extends AppCompatActivity {
         end_game(view);
     }
 
-
+    /**
+     Removes all card based views to avoid duplicates.
+     */
     void remove_all_card_views() {
         human_melds_lin.removeAllViews();
         computer_melds_lin.removeAllViews();
@@ -407,6 +440,9 @@ public class main_board extends AppCompatActivity {
 
     }
 
+    /**
+     Delegates what the instruction text should be based on the phase/operation of the game.
+     */
     void set_instruction_text() {
         if (phase.equals("draw") && operation.equals("none"))
             instruction_text.setText("Draw a card from stock or discard. (Tap either <->)");
@@ -441,7 +477,13 @@ public class main_board extends AppCompatActivity {
             instruction_text.setText("Human's turn: Press continue to play!");
     }
 
-
+    /**
+     Adds a card to a scroll layout. This could include a hand or meld.
+     @param container_name, a string that represents which container to add to.
+     @param pos, an int representing the cards current position in the model container it's in.
+     @param card, a Card to be added to the container.
+     @return What the function returns - don't include if void. Also list special cases, such as what is returned if error.
+     */
     void add_card_to_scroll_container(String container_name, int pos, Card card) {
         //human_hand_lin = findViewById(R.id.human_melds_lin);
         //computer_melds_lin = findViewById(R.id.computer_meld_lin);
@@ -532,11 +574,18 @@ public class main_board extends AppCompatActivity {
 
         //https://stackoverflow.com/questions/6583843/how-to-access-resource-with-dynamic-name-in-my-case
     }
-
+    /**
+     Quits to the main menu.
+     @param view, View from which the corresponding button was clicked from.
+     */
     public void quit_to_menu (View view) {
         Intent intent = new Intent(this, main_menu.class);
         startActivity(intent);
     }
+    /**
+     Displays advice to the player based on the phase and operation.
+     @param view, View from which the corresponding button was clicked from.
+     */
     public void advice(View view) {
         if (pop_up==null) {
             System.out.println("NULL");
@@ -568,7 +617,10 @@ public class main_board extends AppCompatActivity {
             pop_up_advice.setText("Don't ask the Computer for advice or it'll destroy your GPA...");
     }
 
-
+    /**
+     Shows the game log to the player, including output about the round and computer's turn.
+     @param view, View from which the corresponding button was clicked from.
+     */
     public void show_log(View view) {
         if (pop_up==null) {
             System.out.println("NULL");
@@ -585,6 +637,10 @@ public class main_board extends AppCompatActivity {
         //main_game_board.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     Shows an error regarding errors presented during a phase (i.e. melding).
+     @param view, View from which the error was called from
+     */
     public void show_error(View view) {
         pop_up.setVisibility(View.VISIBLE);
         pop_up_log.setVisibility(View.GONE);
@@ -597,7 +653,10 @@ public class main_board extends AppCompatActivity {
         pop_up.bringToFront();
     }
 
-
+    /**
+     Sets the visibility of the meld operations.
+     @param set, a boolean that determines the visibility of the meld operations.
+     */
     public void set_meld_operations_visibility(boolean set) {
         if (set){
             end_meld_phase.setVisibility(View.VISIBLE);
@@ -613,7 +672,10 @@ public class main_board extends AppCompatActivity {
         }
     }
 
-
+    /**
+     Dismisses a pop up.
+     @param view, View from which the corresponding button was clicked from.
+     */
     public void dismiss_pop_up(View view) {
         main_game_board.setVisibility(View.VISIBLE);
         pop_up.setVisibility(View.GONE);
@@ -628,6 +690,10 @@ public class main_board extends AppCompatActivity {
         go_out_button.setVisibility(View.GONE);
     }
 
+    /**
+     Shows the save menu.
+     @param view, View from which the corresponding button was clicked from.
+     */
     public void show_save(View view ) {
         pop_up.setVisibility(View.VISIBLE);
         pop_up_title.setText("Save menu");
@@ -642,7 +708,10 @@ public class main_board extends AppCompatActivity {
 
 
 
-
+    /**
+     Serializes a game based on the file name given in the save_game_input text.
+     @param view, View from which was called from an earlier function when a button was clicked.
+     */
     public void save_game_file(View view) {
         String file_name = save_game_input.getText().toString();
         File path = getApplicationContext().getFilesDir();
@@ -663,12 +732,18 @@ public class main_board extends AppCompatActivity {
         quit_to_menu(view);
     }
 
-
+    /**
+     Concatenates the game log with new text.
+     @param update_string, a String in which to concatenate the update log with.
+     */
     public void update_log(String update_string) {
         String old_string = pop_up_log.getText().toString();
         pop_up_log.setText(old_string+update_string);
     }
-
+    /**
+     Simulates the computer playing, and updates accordingly.
+     @param view, View in which it was gathered from the continue button.
+     */
     public void computer_play(View view) {
         set_pre_turn_menu_visibility(false);
         Computer comp = (Computer) model_round.get_players().get(0);
@@ -727,7 +802,10 @@ public class main_board extends AppCompatActivity {
 
 
     }
-
+    /**
+     Simulates the human playing, and updates accordingly. (Specifically the drawing phase first)
+     @param view, View in which it was gathered from the continue button.
+     */
     void human_play(View view) {
         //System.out.println("HI");
         phase = "draw";
@@ -754,7 +832,10 @@ public class main_board extends AppCompatActivity {
        //main_game_board.setVisibility(View.GONE);
     }
 
-
+    /**
+     Draws from stock, updating the model and view accordingly.
+     @param view,  View from which the corresponding button was clicked from.
+     */
     void draw_from_stock (View view) {
         Card drawn_card = new Card();
         Deck draw_decks = model_round.get_deck();
@@ -773,7 +854,10 @@ public class main_board extends AppCompatActivity {
         }
         human_meld(view);
     }
-
+    /**
+     Draws from discard, updating the model and view accordingly.
+     @param view,  View from which the corresponding button was clicked from.
+     */
     void draw_from_discard(View view) {
         Deck draw_decks = model_round.get_deck();
         Human human_plr = (Human) model_round.get_players().get(1);
@@ -809,7 +893,10 @@ public class main_board extends AppCompatActivity {
         }
 
     }
-
+    /**
+     Simulates the human meld phase.
+     @param view,  View from which it was passed previously by the human_play function.
+     */
     void human_meld(View view) {
         phase="meld";
         set_instruction_text();
@@ -820,7 +907,10 @@ public class main_board extends AppCompatActivity {
         cancel_operation_button.setOnClickListener(this::cancel_all_meld_operations);
         end_meld_phase.setOnClickListener(this::end_meld_phase);
     }
-
+    /**
+     Makes the meld operation visible and adds instructions as such.
+     @param view,  View from which the corresponding button was clicked from.
+     */
     void create_meld_operation(View view) {
         meld_hint.setVisibility(view.INVISIBLE);
         operation = "create meld";
@@ -828,7 +918,10 @@ public class main_board extends AppCompatActivity {
         set_meld_operations_visibility(false);
         cancel_operation_button.setVisibility(View.VISIBLE);
     }
-
+    /**
+     Makes the add to meld visible and adds instructions as such.
+     @param view,  View from which the corresponding button was clicked from.
+     */
     void add_to_meld_operation(View view) {
         meld_hint.setVisibility(view.INVISIBLE);
         operation = "add to meld get card";
@@ -836,6 +929,11 @@ public class main_board extends AppCompatActivity {
         set_meld_operations_visibility(false);
         cancel_operation_button.setVisibility(View.VISIBLE);
     }
+
+    /**
+     Makes the transfer card operation visible and adds instructions as such.
+     @param view,  View from which the corresponding button was clicked from.
+     */
     void transfer_card_operation(View view) {
         meld_hint.setVisibility(view.INVISIBLE);
         operation = "transfer card choose donor";
@@ -844,6 +942,10 @@ public class main_board extends AppCompatActivity {
         cancel_operation_button.setVisibility(View.VISIBLE);
     }
 
+    /**
+     Ends the meld phase and updates view accordingly.
+     @param view,  View from which the corresponding button was clicked from.
+     */
     void end_meld_phase (View view) {
         meld_hint.setVisibility(view.VISIBLE);
         cancel_all_meld_operations(view);
@@ -856,7 +958,10 @@ public class main_board extends AppCompatActivity {
         human_discard(view);
         operation = "none";
     }
-
+    /**
+     Makes the discard phase visible, allowing the human to discard a card.
+     @param view,  View from which was previously passed from by end_meld_phase.
+     */
     void human_discard(View view) {
         model_round.get_players().get(1).clear_transfer_states();
         phase = "discard";
@@ -870,7 +975,10 @@ public class main_board extends AppCompatActivity {
             phase = "computer";
         }
     }
-
+    /**
+     Updates view and model accordingly by card chosen to discard.
+     @param view,  View from which the corresponding Card was clicked from.
+     */
     void select_discard(View view) {
         ImageView card_view = (ImageView) view;
         card_view.setBackgroundColor(Color.parseColor("#4CBB17"));
@@ -902,21 +1010,27 @@ public class main_board extends AppCompatActivity {
     }
 
 
-    void do_nothing(View view ) {
-        return;
-    }
-
+    /**
+     Delegates tasks to the stock_pile button depending on the phase.
+     @param view View from which the corresponding button was clicked from.
+     */
     void draw_stock_factory(View view) {
         if (phase.equals( "draw"))
             draw_from_stock(view);
     }
-
+    /**
+     Delegates tasks to the discard_pile button depending on the phase.
+     @param view View from which the corresponding button was clicked from.
+     */
     void draw_discard_factory(View view) {
         if (phase.equals("draw"))
             draw_from_discard(view);
     }
 
-
+    /**
+     Delegates tasks to a Card in the human's hand depending on the phase.
+     @param view View from which the corresponding button was clicked from.
+     */
     void human_hand_card_delegator(View view) {
         ImageView card_view = (ImageView) view;
         String content_selected_desc = card_view.getContentDescription().toString();
@@ -941,7 +1055,10 @@ public class main_board extends AppCompatActivity {
         }
 
     }
-
+    /**
+     Delegates tasks to a Card in the human's melds depending on the phase.
+     @param view View from which the corresponding button was clicked from.
+     */
     void human_meld_card_delegator(View view) {
         if (operation.equals("transfer card choose donor")) {
             select_meld_donor(view);
@@ -958,6 +1075,10 @@ public class main_board extends AppCompatActivity {
         }
     }
 
+    /**
+     Cancels all melding operations, making the meld menu visibile again and resetting variables associated with meld operations.
+     @param view View from which the corresponding button was clicked from.
+     */
     void cancel_all_meld_operations(View view) {
         meld_hint.setVisibility(view.VISIBLE);
         potential_meld.clear();
@@ -974,6 +1095,12 @@ public class main_board extends AppCompatActivity {
         update_views();
     }
 
+
+    /**
+     Gets a card from the hand given a clicked Card.
+     @param view View from which was passed by an operation/phase, which will be used to get a Card from the hand.
+     @return a Card representing a card in the hand given an id.
+     */
     Card get_card_from_hand(View view) {
         int hand_id_offset = 1000;
         ImageView card_view = (ImageView) view;
@@ -982,21 +1109,32 @@ public class main_board extends AppCompatActivity {
         System.out.println(pos);
         return temp_hand.get(pos);
     }
-
+    /**
+     Gets a card's position from the hand given a clicked Card.
+     @param view View from which was passed by an operation/phase, which will be used to get it's position from the hand.
+     @return an int representing a Card's position given a clicked Card.
+     */
     int get_card_pos_from_hand(View view) {
         int hand_id_offset = 1000;
         ImageView card_view = (ImageView) view;
         return (card_view.getId() % hand_id_offset)-1;
     }
 
-
+    /**
+     Gets a card from the melds given a clicked Card.
+     @param view View from which was passed by an operation/phase, which will be used to get it's position from the melds.
+     @return an int representing a Card's position given a clicked Card.
+     */
     int get_pos_from_melds(View view ) {
         int meld_id_offset = 3000;
         ImageView card_view = (ImageView) view;
         return (card_view.getId() % meld_id_offset)-1;
     }
 
-
+    /**
+     Selects a card and highlights it from which to add.
+     @param view  View from which the corresponding button was clicked from.
+     */
     void select_card_add(View view) {
         ImageView card_view = (ImageView) view;
         card_view.setBackgroundColor(Color.parseColor("#4CBB17"));
@@ -1007,7 +1145,10 @@ public class main_board extends AppCompatActivity {
         operation = "add to meld get meld";
         set_instruction_text();
     }
-
+    /**
+     Selects a meld and highlights it from which to add.
+     @param view  View from which the corresponding button was clicked from.
+     */
     void select_meld_add(View view) {
         ImageView card_view = (ImageView) view;
         card_view.setBackgroundColor(Color.parseColor("#4CBB17"));
@@ -1044,7 +1185,10 @@ public class main_board extends AppCompatActivity {
 
 
 
-
+    /**
+     Selects a card and highlights it from which to donate from.
+     @param view  View from which the corresponding button was clicked from.
+     */
     void select_meld_donor(View view) {
         ImageView card_view = (ImageView) view;
         card_view.setBackgroundColor(Color.parseColor("#4CBB17"));
@@ -1070,7 +1214,10 @@ public class main_board extends AppCompatActivity {
             set_instruction_text();
         }
     }
-
+    /**
+     Selects a card and highlights it to specify which meld should receive a card.
+     @param view  View from which the corresponding button was clicked from.
+     */
     void select_meld_receiver(View view) {
         ImageView card_view = (ImageView) view;
         card_view.setBackgroundColor(Color.parseColor("#4CBB17"));
@@ -1114,7 +1261,10 @@ public class main_board extends AppCompatActivity {
 
     }
 
-
+    /**
+     Selects a card and highlights it from which to create a meld with.
+     @param view  View from which the corresponding button was clicked from.
+     */
     void select_card(View view) {
         ImageView card_view = (ImageView) view;
         card_view.setBackgroundColor(Color.parseColor("#4CBB17"));
@@ -1151,6 +1301,10 @@ public class main_board extends AppCompatActivity {
 
 
     }
+    /**
+     Deselects a card and removes it highlight (in the create meld operation).
+     @param view  View from which the corresponding button was clicked from.
+     */
     void unselect_card(View view) {
         ImageView card_view = (ImageView) view;
         card_view.setBackgroundColor(0x00000000);
